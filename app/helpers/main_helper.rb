@@ -2,6 +2,8 @@
 
 Thumbnailr.helpers do
   def url_link(url)
-    link_to url, url
+    root = request.scheme + '://' + request.host
+    root += ":#{request.port}" unless request.port == 80
+    link_to root+url, url
   end
 end
