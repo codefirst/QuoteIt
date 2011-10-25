@@ -3,6 +3,8 @@
     %input.span8.xlarge{:placeholder => 'URL for quote', :name => 'u', :value=> @url}
     %input.span2.btn.primary{:type => :submit, :value => 'Quote It' }
 
+.page-header
+  %h2 Preview
 %div.preview.row{:Style=>'vertical-align:middle'}
   %div.span8.page!=@page
   %div.span7
