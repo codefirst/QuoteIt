@@ -5,17 +5,33 @@
       %input.span8.xlarge{:placeholder => 'URL for quote', :name => 'u'}
       %input.span2.btn.primary{:type => :submit, :value => 'Quote It' }
 
-%h2 About <span class="brand">QuoteIt</span>
-%div.span5
-  %h3 Feature
-  %p <span class="brand">QutoteIt</span> provides API to get the thumbnail image and the summary of a URL. This reduce a boiler plate code from some URL expanding plugin(e.g. wiki macro, grease monkey, and others).
-%div.span5
-  %h3 Support service
-  %ul
-    %li=link_to('Twitter','http://twitter.com')
-    %li=link_to('Twitpic','http://twitpic.com')
-    %li=link_to('yfrog','http://yfrog.com')
-    %li=link_to('YouTube','http://youtube.com')
-    %li=link_to('NicoVideo','http://www.nicovideo.jp')
-    %li ... and more
-  %p="You could see a full-list at #{link_to('supported services', url_for(:services))} page."
+.page-header
+  %h2
+    About <span class="brand">QuoteIt</span>
+    %small thumbnail/quote boilerplate
+.row
+  .span5
+    %h3 About
+    %p <span class="brand">QutoteIt</span> provides API to get the thumbnail image and the summary of a URL. This reduce a boiler plate code from some URL expanding plugin(e.g. wiki macro, grease monkey, and others).
+  .span5
+    %h3 Support service
+    %ul
+      %li=link_to('Twitter','http://twitter.com')
+      %li=link_to('Twitpic','http://twitpic.com')
+      %li=link_to('yfrog','http://yfrog.com')
+      %li=link_to('YouTube','http://youtube.com')
+      %li=link_to('NicoVideo','http://www.nicovideo.jp')
+      %li ... and more
+      %p="You could see a full-list at #{link_to('supported services', url_for(:services))} page."
+  .span5
+    %h3 Features
+    %ul
+      %li Get thumbnail url by plain text,or JSON.
+      %li Get a summary contents of web resource by html, or JSON.
+.page-header
+  %h2 Example
+%dl
+  %dt Get thumbnail from <a href='http://twitpic.com/73wiod'>http://twitpic.com/73wiod</a>
+  %dd=url_link(url_for(:show, :u=>'http://twitpic.com/73wiod'))
+  %dt Get tweet from <a href='https://twitter.com/#!/twitter/status/91890490089275392'>https://twitter.com/#!/twitter/status/91890490089275392</a>
+  %dd=url_link(url_for(:show, :u=>'https://twitter.com/#!/twitter/status/91890490089275392'))
