@@ -2,12 +2,19 @@
 require 'open-uri'
 require 'json'
 require 'webclip/webclip'
-
+require 'webclip/thumbnail'
 
 module Webclip
   class Html < ::Webclip::Webclip
     def self.[](url)
-      best_match(url)
+      html = best_match(url)
+      unless html  then
+        image = ::Webclip::Thumbnail[url]
+        if image then
+          html = "<a href='#{url}'><img src='#{image}' /></a>"
+        end
+      end
+      html
     end
 
     rule /https?:\/\/twitter\.com\/(?:#!\/)?[a-zA-Z0-9_]+\/status(?:es)?\/([0-9]+)/ do|id|

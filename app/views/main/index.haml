@@ -1,8 +1,8 @@
 %h1.logo Quote It
 %div.offset4.span12
-  %form
+  %form{:action => url_for(:show) }
     %p
-      %input.span8.xlarge{:placeholder => 'URL for quote'}
+      %input.span8.xlarge{:placeholder => 'URL for quote', :name => 'u'}
       %input.span2.btn.primary{:type => :submit, :value => 'Quote It' }
 
 

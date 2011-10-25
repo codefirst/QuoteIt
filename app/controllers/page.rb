@@ -3,7 +3,7 @@ require 'webclip/thumbnail'
 require 'webclip/html'
 require 'json'
 Thumbnailr.controllers :page do
-  get "/thumbnail", :provides => [:json, :jpg, :png, :image, :txt] do
+  get :thumbnail,:map =>"/thumbnail", :provides => [:json, :jpg, :png, :image, :txt] do
     url = params[:u]
     thumbnail = ::Webclip::Thumbnail[url] || halt(404, 'thumbnail not found')
 
@@ -21,7 +21,7 @@ Thumbnailr.controllers :page do
     end
   end
 
-  get '/content', :provides => [:json, :html] do
+  get :html, :map => '/content', :provides => [:json, :html] do
     url = params[:u]
     content = ::Webclip::Html[url] || halt(404, "page not found")
     case content_type

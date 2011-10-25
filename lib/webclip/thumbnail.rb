@@ -61,5 +61,4 @@ module Webclip
       [r1, r1]
     end
   end
-
 end
