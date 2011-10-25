@@ -17,9 +17,14 @@ module Webclip
       html
     end
 
-    rule /https?:\/\/twitter\.com\/(?:#!\/)?[a-zA-Z0-9_]+\/status(?:es)?\/([0-9]+)/ do|id|
-      open("http://api.twitter.com/1/statuses/show.json?id=#{id}") do|io|
-        json = JSON.parse io.read
+    rule_reset!
+
+    rule /https?:\/\/twitter\.com\/(?:#!\/)?[a-zA-Z0-9_]+\/status(?:es)?\/([0-9]+)/ do|conf|
+      conf.field :service, 'Twitter'
+      conf.field :url, 'http://twitter.com'
+      conf.on do|id|
+        open("http://api.twitter.com/1/statuses/show.json?id=#{id}") do|io|
+          json = JSON.parse io.read
 <<HTML
 <div class="twitter content">
   <div class="info" stlye="margin-top:3px;margin-bottom:3px;">
@@ -32,6 +37,7 @@ module Webclip
   <div class='content' style="clear:both;padding:0 5px">#{json['text']}</div>
 </div>
 HTML
+        end
       end
     end
   end

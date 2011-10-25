@@ -1,0 +1,15 @@
+%h1 Supported services
+%h2 Thumbnail(alphabet order)
+%ul
+  - @thumbnails.each do|rule|
+    - if rule[:url]
+      %li=link_to rule[:service],rule[:url]
+    - else
+      %li=rule[:service]
+%h2 Content quote(alphabet order)
+%ul
+  - @htmls.each do|rule|
+    - if rule[:url]
+      %li=link_to rule[:service],rule[:url]
+    - else
+      %li=rule[:service]
