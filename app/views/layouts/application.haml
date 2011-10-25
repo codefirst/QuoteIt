@@ -1,0 +1,28 @@
+!!!5
+%html
+  %head
+    %meta{'http-equiv'=>'content', :content=>'text/thml; charset=utf-8'}
+    %meta{:name => "content-style-type", :content => "text/css"}
+    %meta{:name => "content-script-type", :content => "text/javascript"}
+    = stylesheet_link_tag 'bootstrap'
+    = stylesheet_link_tag 'main'
+    %title Quote It - quote webpage contents
+  %body
+    .topbar
+      .fill
+        .container
+          %a.brand Quote It
+          %ul.nav
+            %li
+              %a Home
+            %li
+              %a About
+    .container
+      .main.row
+        =yield
+      .credits
+        %p="Copyright (C) 2011 <a href='http://codefirst.org'>codefirst.org</a>. All rights reserved."
+
+
+
+

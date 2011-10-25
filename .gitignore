@@ -9,3 +9,4 @@ vendor/bundle/*
 .sass-cache/*
 .bundle/*
 Gemfile.lock
+public/stylesheets/main.css
