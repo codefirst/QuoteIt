@@ -30,7 +30,7 @@ Thumbnailr.controllers :page do
         'url' => url
       }.to_json
     else
-      content
+      html
     end
   end
 end
