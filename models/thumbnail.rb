@@ -6,16 +6,18 @@ class Thumbnail
   field :url
   field :regexp
   field :thumbnail
+  field :source
 
   class << self
     def update!(items)
-      self.delete_all
+      self.where(:source => 'wedata').delete_all
       items.each do|item|
         data = item['data']
         self.create(:name => item['name'],
                     :regexp => data['regexp'],
                     :thumbnail => data['thumbnail'],
                     :url => data['url'],
+                    :source => 'wedata',
                     :updated_at => Time.parse(item['updated_at']))
       end
     end
