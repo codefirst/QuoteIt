@@ -51,7 +51,7 @@ class Html
             }.call
           end
         end
-        "<div clas='quote-it clip'>#{clip}</a>"
+        "<div clas='quote-it clip'>#{clip}</div>"
       end
     end
 
