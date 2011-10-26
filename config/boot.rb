@@ -24,6 +24,7 @@ end
 # Add your after load hooks here
 #
 Padrino.after_load do
+  Padrino.require_dependencies(Padrino.root + "/config/wedata.rb")
 end
 
 Padrino.load!

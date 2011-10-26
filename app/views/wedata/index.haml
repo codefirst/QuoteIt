@@ -1,6 +1,6 @@
 %h1 <span class="brand">QuoteIt</span> plugin at wedata
 %h2 Thumbanils
-%p You can see/edit this data at <a href="http://wedata.net/databases/QuoteIt-thumbnail/items">QuoteIt-thumbnail DB</a>.
+%p="You can see/edit this data at <a href='#{WEDATA_THUMBNAIL}'>QuoteIt-thumbnail DB</a>."
 %ul
   - @thumbnails.each do|thumbnail|
     %li
@@ -12,7 +12,7 @@
       %a{:href => thumbnail['resource_url']}=thumbnail['name']
 
 %h2 Content clip
-%p You can see/edit this data at <a href="http://wedata.net/databases/QuoteIt-clip/items">QuoteIt-clip DB</a>.
+%p="You can see/edit this data at <a href='#{WEDATA_CLIP}'>QuoteIt-clip DB</a>."
 %ul
   - @clips.each do|clip|
     %li

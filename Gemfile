@@ -5,6 +5,7 @@ source :rubygems
 # gem 'mongrel'
 
 # Project requirements
+gem 'json'
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 

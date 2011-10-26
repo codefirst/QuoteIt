@@ -1,14 +1,14 @@
 require 'open-uri'
 Thumbnailr.controllers :wedata do
   get :index, :map => '/wedata' do
-    open('http://wedata.net/databases/QuoteIt-thumbnail/items.json') do|io|
+    open(WEDATA_THUMBNAIL + '.json') do|io|
       @thumbnails = JSON.parse(io.read).map{|item|
         item['status'] = Thumbnail.status item
         item
       }
     end
 
-    open('http://wedata.net/databases/QuoteIt-clip/items.json') do|io|
+    open(WEDATA_CLIP + '.json') do|io|
       @clips = JSON.parse(io.read).map{|item|
         item['status'] = Html.status item
         item
@@ -18,12 +18,12 @@ Thumbnailr.controllers :wedata do
   end
 
   post :update, :map => '/wedata/update' do
-    open('http://wedata.net/databases/QuoteIt-thumbnail/items.json') do|io|
+    open(WEDATA_THUMBNAIL + '.json') do|io|
       items = JSON.parse(io.read)
       count = Thumbnail.update! items
     end
 
-    open('http://wedata.net/databases/QuoteIt-clip/items.json') do|io|
+    open(WEDATA_CLIP + '.json') do|io|
       items = JSON.parse(io.read)
       count = Html.update! items
     end
