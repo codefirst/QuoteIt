@@ -51,14 +51,14 @@ class Html
             }.call
           end
         end
-        clip
+        "<div clas='quote-it clip'>#{clip}</a>"
       end
     end
 
     def fallback(url)
       image = Thumbnail[url]
       if image then
-        "<a href='#{url}'><img src='#{image}' /></a>"
+        "<a class='quote-it thumbnail' href='#{url}'><img src='#{image}' /></a>"
       end
     end
   end
