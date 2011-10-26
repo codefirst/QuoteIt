@@ -16,11 +16,16 @@
             %li
               %a{:href=>'/'} Home
             %li
-              =link_to 'Supported services', url_for(:services)
+              =link_to 'Services', url_for(:services)
+            %li
+              =link_to 'Plugins', url_for(:wedata_index)
             %li
               %a About
     .container
       .main.row
+        - if flash[:notice]
+          .alert-message.success
+            %p=flash[:notice]
         =yield
     %footer.credits
       %p="Copyright (C) 2011 <a href='http://codefirst.org'>codefirst.org</a>. All rights reserved."

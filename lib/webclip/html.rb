@@ -2,19 +2,11 @@
 require 'open-uri'
 require 'json'
 require 'webclip/webclip'
-require 'webclip/thumbnail'
 
 module Webclip
   class Html < ::Webclip::Webclip
     def self.[](url)
-      html = best_match(url)
-      unless html  then
-        image = ::Webclip::Thumbnail[url]
-        if image then
-          html = "<a href='#{url}'><img src='#{image}' /></a>"
-        end
-      end
-      html
+      best_match(url)
     end
 
     rule_reset!

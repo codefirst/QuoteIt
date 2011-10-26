@@ -17,14 +17,15 @@
     %textarea.span7.xlarge{:rows=>3}=@page
 .page-header
   %h2 API
-%h3 Thumbnail
-%dl
-  %dt Get JSON
-  %dd=url_link(url_for(:page, :thumbnail, :u => @url, :format => :json))
-  %dt Get Plain text
-  %dd=url_link(url_for(:page, :thumbnail, :u => @url, :format => :txt))
-  %dt Redirect thumbnail image
-  %dd=url_link(url_for(:page, :thumbnail, :u => @url, :format => :jpg))
+- if @thumbnail
+  %h3 Thumbnail
+  %dl
+    %dt Get JSON
+    %dd=url_link(url_for(:page, :thumbnail, :u => @url, :format => :json))
+    %dt Get Plain text
+    %dd=url_link(url_for(:page, :thumbnail, :u => @url, :format => :txt))
+    %dt Redirect thumbnail image
+    %dd=url_link(url_for(:page, :thumbnail, :u => @url, :format => :jpg))
 %h3 Content
 %dl
   %dt Get JSON

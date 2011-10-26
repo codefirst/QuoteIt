@@ -12,7 +12,7 @@
 .row
   .span5
     %h3 About
-    %p <span class="brand">QutoteIt</span> provides API to get the thumbnail image and the summary of a URL. This reduce a boiler plate code from some URL expanding plugin(e.g. wiki macro, grease monkey, and others).
+    %p <span class="brand">QutoteIt</span> provides API to get the thumbnail image and the clip of a web resource. This reduce a boilerplate code from some URL expanding plugin(e.g. wiki macro, grease monkey, and others).
   .span5
     %h3 Support service
     %ul
@@ -24,14 +24,14 @@
       %li ... and more
       %p="You could see a full-list at #{link_to('supported services', url_for(:services))} page."
   .span5
-    %h3 Features
+    %h3 Related Tools
     %ul
-      %li Get thumbnail url by plain text,or JSON.
-      %li Get a summary contents of web resource by html, or JSON.
+      %li
+        %a{:href=>'http://asakusasatellite.heroku.com'} AsakusaSatellite
 .page-header
   %h2 Example
 %dl
   %dt Get thumbnail from <a href='http://twitpic.com/73wiod'>http://twitpic.com/73wiod</a>
   %dd=url_link(url_for(:show, :u=>'http://twitpic.com/73wiod'))
-  %dt Get tweet from <a href='https://twitter.com/#!/twitter/status/91890490089275392'>https://twitter.com/#!/twitter/status/91890490089275392</a>
+  %dt Get clip from <a href='https://twitter.com/#!/twitter/status/91890490089275392'>https://twitter.com/#!/twitter/status/91890490089275392</a>
   %dd=url_link(url_for(:show, :u=>'https://twitter.com/#!/twitter/status/91890490089275392'))

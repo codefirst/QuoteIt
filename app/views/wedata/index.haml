@@ -1,0 +1,15 @@
+%h1 <span class="brand">QuoteIt</span> plugin at wedata
+%p You can see/edit this data at <a href="http://wedata.net/databases/QuoteIt-thumbnail/items">wedata</a>.
+%h2 Thumbanils
+%ul
+  - @thumbnails.each do|thumbnail|
+    %li
+      - case thumbnail['status']
+      - when :new
+        %span.label.notice new
+      - when :updated
+        %span.label.notice update
+      %a{:href => thumbnail['resource_url']}=thumbnail['name']
+
+%form{:action => url_for(:wedata_update), :method => :post}
+  %input.danger.btn{:value=>'Update cache', :type=>'submit'}

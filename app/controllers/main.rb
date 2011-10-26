@@ -1,5 +1,4 @@
 require 'webclip/html'
-require 'webclip/thumbnail'
 Thumbnailr.controllers do
   get '/' do
     render 'main/index'
@@ -7,8 +6,8 @@ Thumbnailr.controllers do
 
   get :show, :map => '/show' do
     @url  = params[:u]
-    @thumbnail = ::Webclip::Thumbnail[@url]
-    @page = ::Webclip::Html[@url]
+    @thumbnail = Thumbnail[@url]
+    @page      = Html[@url]
     render 'main/show'
   end
 
@@ -17,7 +16,7 @@ Thumbnailr.controllers do
       xs.select{|x| x[:service] != nil }.sort_by{|x| x[:service].downcase }
     end
 
-    @thumbnails = sort[::Webclip::Thumbnail.all_rules]
+    @thumbnails = ::Thumbnail.all.to_a.sort_by{|x| x.name.downcase }
     @htmls      = sort[::Webclip::Html.all_rules]
     render 'main/services'
   end

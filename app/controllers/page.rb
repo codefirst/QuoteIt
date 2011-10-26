@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
-require 'webclip/thumbnail'
-require 'webclip/html'
 require 'json'
+
 Thumbnailr.controllers :page do
   get :thumbnail,:map =>"/thumbnail", :provides => [:json, :jpg, :png, :image, :txt] do
     url = params[:u]
-    thumbnail = ::Webclip::Thumbnail[url] || halt(404, 'thumbnail not found')
+    thumbnail = Thumbnail[url] || halt(404, 'thumbnail not found')
 
     case content_type
     when :json
@@ -21,14 +19,14 @@ Thumbnailr.controllers :page do
     end
   end
 
-  get :html, :map => '/content', :provides => [:json, :html] do
+  get :html, :map => '/clip', :provides => [:json, :html] do
     url = params[:u]
-    content = ::Webclip::Html[url] || halt(404, "page not found")
+    html = Html[url] || halt(404, "page not found")
     case content_type
     when :json
       {
         'status' => 'ok',
-        'content'    => content,
+        'html'    => html,
         'url' => url
       }.to_json
     else

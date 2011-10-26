@@ -1,15 +1,16 @@
 %h1 Supported services
-%h2 Thumbnail(alphabet order)
+%p="You can see latest list and upgrade at <a href=#{url_for(:wedata_index)}>wedata</a> page."
+%h2 Thumbnail
 %ul
-  - @thumbnails.each do|rule|
-    - if rule[:url]
-      %li=link_to rule[:service],rule[:url]
-    - else
-      %li=rule[:service]
-%h2 Content quote(alphabet order)
+  - @thumbnails.each do|item|
+    %li
+      %a{:href=>item.url}=item.name
+%h2 Content clip
 %ul
   - @htmls.each do|rule|
     - if rule[:url]
       %li=link_to rule[:service],rule[:url]
     - else
       %li=rule[:service]
+
+
