@@ -10,4 +10,5 @@ vendor/bundle/*
 .bundle/*
 Gemfile.lock
 public/stylesheets/main.css
-\#*\#t
+\#*\#
+db/*

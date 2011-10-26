@@ -1,5 +1,5 @@
 ---
-:orm: none
+:orm: mongoid
 :test: rspec
 :mock: none
 :script: jquery
