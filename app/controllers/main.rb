@@ -7,6 +7,7 @@ Thumbnailr.controllers do
     @url  = params[:u]
     @thumbnail = Thumbnail[@url]
     @page      = Html[@url]
+    halt(404, "page not found") unless @page
     render 'main/show'
   end
 
