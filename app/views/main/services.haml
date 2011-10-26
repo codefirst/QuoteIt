@@ -7,10 +7,9 @@
       %a{:href=>item.url}=item.name
 %h2 Content clip
 %ul
-  - @htmls.each do|rule|
-    - if rule[:url]
-      %li=link_to rule[:service],rule[:url]
-    - else
-      %li=rule[:service]
+  - @htmls.each do|item|
+    %li
+      %a{:href=>item.url}=item.name
+
 
 

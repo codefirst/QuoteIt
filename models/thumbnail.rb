@@ -1,6 +1,9 @@
+require 'wedata_util'
+
 class Thumbnail
   include Mongoid::Document
   include Mongoid::Timestamps
+  extend WedataUtil
 
   field :name
   field :url
@@ -10,27 +13,12 @@ class Thumbnail
 
   class << self
     def update!(items)
-      self.where(:source => 'wedata').delete_all
-      items.each do|item|
-        data = item['data']
-        self.create(:name => item['name'],
-                    :regexp => data['regexp'],
-                    :thumbnail => data['thumbnail'],
-                    :url => data['url'],
-                    :source => 'wedata',
-                    :updated_at => Time.parse(item['updated_at']))
-      end
-    end
-
-    def status(item)
-      x = self.first(:conditions => {:name => item['name']})
-      case
-      when x == nil
-        :new
-      when x.updated_at < Time.parse(item['updated_at'])
-        :updated
-      else
-        :exist
+      update_by!(items) do|data|
+        {
+          :regexp => data['regexp'],
+          :thumbnail => data['thumbnail'],
+          :url => data['url'],
+        }
       end
     end
 
@@ -39,12 +27,7 @@ class Thumbnail
         url =~ /#{x.regexp}/
       end
       if item then
-        match = Regexp.new(item.regexp).match(url)
-        thumbnail = item.thumbnail
-        match.captures.each_with_index do|capture,i|
-          thumbnail.gsub!("$#{i+1}", capture)
-        end
-        thumbnail
+        eval_regexp url, item.regexp, item.thumbnail
       end
     end
   end

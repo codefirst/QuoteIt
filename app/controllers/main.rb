@@ -1,4 +1,3 @@
-require 'webclip/html'
 Thumbnailr.controllers do
   get '/' do
     render 'main/index'
@@ -12,12 +11,8 @@ Thumbnailr.controllers do
   end
 
   get :services, :map=>'/services' do
-    sort = lambda do|xs|
-      xs.select{|x| x[:service] != nil }.sort_by{|x| x[:service].downcase }
-    end
-
     @thumbnails = ::Thumbnail.all.to_a.sort_by{|x| x.name.downcase }
-    @htmls      = sort[::Webclip::Html.all_rules]
+    @htmls      = ::Html.all.to_a.sort_by{|x| x.name.downcase }
     render 'main/services'
   end
 end

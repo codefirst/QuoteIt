@@ -1,6 +1,6 @@
 %h1 <span class="brand">QuoteIt</span> plugin at wedata
-%p You can see/edit this data at <a href="http://wedata.net/databases/QuoteIt-thumbnail/items">wedata</a>.
 %h2 Thumbanils
+%p You can see/edit this data at <a href="http://wedata.net/databases/QuoteIt-thumbnail/items">QuoteIt-thumbnail DB</a>.
 %ul
   - @thumbnails.each do|thumbnail|
     %li
@@ -10,6 +10,18 @@
       - when :updated
         %span.label.notice update
       %a{:href => thumbnail['resource_url']}=thumbnail['name']
+
+%h2 Content clip
+%p You can see/edit this data at <a href="http://wedata.net/databases/QuoteIt-clip/items">QuoteIt-clip DB</a>.
+%ul
+  - @clips.each do|clip|
+    %li
+      - case clip['status']
+      - when :new
+        %span.label.notice new
+      - when :updated
+        %span.label.notice update
+      %a{:href => clip['resource_url']}=clip['name']
 
 %form{:action => url_for(:wedata_update), :method => :post}
   %input.danger.btn{:value=>'Update cache', :type=>'submit'}
