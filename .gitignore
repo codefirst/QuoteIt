@@ -8,7 +8,6 @@ vendor/bundle/*
 !vendor/gems/cache/
 .sass-cache/*
 .bundle/*
-Gemfile.lock
 public/stylesheets/main.css
 \#*\#
 db/*
