@@ -1,12 +1,18 @@
+# -*- coding: utf-8 -*-
 require 'wedata_util'
 
 class CleanRoom
   attr_reader :content, :json
   def initialize(url)
-    open(url) do|io|
-      @content = io.read
-      @json    = JSON.parse @content
+    key = "data::#{url}"
+    unless Thumbnailr.cache.get key then
+      open(url) do|io|
+        Thumbnailr.cache.set key, io.read
+      end
     end
+
+    @content = Thumbnailr.cache.get key
+    @json    = JSON.parse @content
   rescue => e
     logger.info e.inspect
     logger.info e.io.meta
@@ -38,12 +44,7 @@ class Html
     end
 
     def [](url)
-      key = "clip_for_#{url}"
-      unless Thumbnailr.cache.get(key) then
-        clip = get(url) || fallback(url)
-        Thumbnailr.cache.set key, clip
-      end
-      Thumbnailr.cache.get key
+      get(url) || fallback(url)
     end
 
     def get(url)
