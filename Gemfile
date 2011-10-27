@@ -8,6 +8,7 @@ source :rubygems
 gem 'json'
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
+gem 'dalli'
 
 # Component requirements
 gem 'sass'

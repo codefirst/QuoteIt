@@ -40,11 +40,17 @@ class Thumbnailr < Padrino::Application
   ##
   # You can configure for a specified environment like:
   #
-  #   configure :development do
-  #     set :foo, :bar
-  #     disable :asset_stamp # no asset timestamping for dev
-  #   end
-  #
+  configure :production do
+    set :cache, ::Dalli::Client.new(ENV['MEMCACHE_SERVERS'],
+                                    :username => ENV['MEMCACHE_USERNAME'],
+                                    :password => ENV['MEMCACHE_PASSWORD'],
+                                    :expires_in => 60)
+  end
+  configure :development do
+    set :cache, ::Dalli::Client.new('127.0.0.1:11211',
+                                    :expires_in => 60)
+
+  end
 
   ##
   # You can manage errors like:

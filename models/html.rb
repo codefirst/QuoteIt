@@ -38,10 +38,16 @@ class Html
     end
 
     def [](url)
-      get(url) || fallback(url)
+      key = "clip_for_#{url}"
+      unless Thumbnailr.cache.get(key) then
+        clip = get(url) || fallback(url)
+        Thumbnailr.cache.set key, clip
+      end
+      Thumbnailr.cache.get key
     end
 
     def get(url)
+      logger.info "get for #{url}"
       item = self.where.to_a.find do|x|
         url =~ /#{x.regexp}/
       end
