@@ -7,6 +7,10 @@ class CleanRoom
       @content = io.read
       @json    = JSON.parse @content
     end
+  rescue => e
+    logger.info e.inspect
+    logger.info e.io.meta
+    raise e
   end
 end
 
