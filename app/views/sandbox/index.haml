@@ -21,6 +21,7 @@
       %label Thumbnail URL
       .input
         %input.thumbnail.xlarge{:placeholder=> 'http://example.com/thumbnail/$1', :name => 'thumbnail'}
+        %p.help-block <strong>Note:</strong> $1, $2, etc. hold the text matched by the first, second, and following capturing groups.
   .web-clip.plugin{:style=>'display:none'}
     .clearfix
       %label Regexp for URL
@@ -30,10 +31,19 @@
       %label Clip URL
       .input
         %input.xlarge.clip
+        %p.help-block <strong>Note:</strong> $1, $2, etc. hold the text matched by the first, second, and following capturing groups.
     .clearfix
-      %label Transform(optional)
+      %label
+        Transform(Ruby)
+        %span.help-block optional
       .input
         =text_area_tag('content', :value => @content, :class => 'edit-text transform', :id => 'code')
+        .help-block
+          %h4 Available variable
+          %ul
+            %li <code>content</code>: content of clip URL
+            %li <code>json</code>: parse result of <code>content</code>
+
   %h2 Plugin test
   .plugin-test
     .clearfix
