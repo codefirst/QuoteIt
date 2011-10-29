@@ -5,3 +5,4 @@
 :script: jquery
 :renderer: haml
 :stylesheet: sass
+:admin_renderer: haml

@@ -27,7 +27,15 @@ class Thumbnail
         url =~ /#{x.regexp}/
       end
       if item then
-        eval_regexp url, item.regexp, item.thumbnail
+        run_rule url, :regexp => item.regexp, :thumbnail => item.thumbnail
+      end
+    end
+
+    def run_rule(url, rule)
+      if url =~ /#{rule[:regexp]}/ then
+        eval_regexp url, rule[:regexp], rule[:thumbnail]
+      else
+        raise 'not_match'
       end
     end
   end

@@ -25,3 +25,19 @@ body {
 
 .main {
   padding-top: 20px; }
+
+.CodeMirror {
+  background-color: white;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  margin-bottom: 10px; }
+
+.result {
+  min-height: 200px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border: 1px solid #cccccc;
+  padding: 10px; }

@@ -11,6 +11,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'dalli'
 
 # Component requirements
+gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'sass'
 gem 'haml'
 gem 'mongoid', '2.2.3'

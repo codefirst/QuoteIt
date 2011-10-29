@@ -13,7 +13,7 @@ class CleanRoom
 
     @content = Thumbnailr.cache.get key
     @json    = JSON.parse @content
-  rescue => e
+  rescue OpenURI::HTTPError => e
     logger.info e.inspect
     logger.info e.io.meta
     raise e
@@ -52,18 +52,20 @@ class Html
       item = self.where.to_a.find do|x|
         url =~ /#{x.regexp}/
       end
-      if item then
-        clip = WedataUtil::eval_regexp url, item.regexp, item.clip
-        if item.transform then
-          CleanRoom.new(clip).instance_eval do
-            proc {
-              $SAFE = 4
-              clip = eval item.transform
-            }.call
-          end
+      run_rule url, :regexp=>item.regexp, :clip=>item.clip, :transform => item.transform
+    end
+
+    def run_rule(url, rule)
+      clip = eval_regexp url, rule[:regexp], rule[:clip]
+      if rule[:transform] and not rule[:transform].empty? then
+        CleanRoom.new(clip).instance_eval do
+          proc {
+            $SAFE = 4
+            clip = eval rule[:transform]
+          }.call
         end
-        "<div clas='quote-it clip'>#{clip}</div>"
       end
+      "<div clas='quote-it clip'>#{clip}</div>"
     end
 
     def fallback(url)

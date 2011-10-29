@@ -1,6 +1,6 @@
 require 'open-uri'
 Thumbnailr.controllers :wedata do
-  get :index, :map => '/wedata' do
+  get :index, :map => '/upgrade' do
     open(WEDATA_THUMBNAIL + '.json') do|io|
       @thumbnails = JSON.parse(io.read).map{|item|
         item['status'] = Thumbnail.status item
@@ -14,6 +14,7 @@ Thumbnailr.controllers :wedata do
         item
       }
     end
+    @title = 'Upgrade plugins'
     render 'wedata/index'
   end
 

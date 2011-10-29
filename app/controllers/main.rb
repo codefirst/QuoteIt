@@ -11,9 +11,10 @@ Thumbnailr.controllers do
     render 'main/show'
   end
 
-  get :services, :map=>'/services' do
+  get :services, :map=>'/plugins' do
     @thumbnails = ::Thumbnail.all.to_a.sort_by{|x| x.name.downcase }
     @htmls      = ::Html.all.to_a.sort_by{|x| x.name.downcase }
-    render 'main/services'
+    @title = 'Plugins'
+    render 'main/plugins'
   end
 end

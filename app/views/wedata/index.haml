@@ -1,4 +1,9 @@
-%h1 <span class="brand">QuoteIt</span> plugin at wedata
+.page-header
+  %h1
+    Upgrade plugins from wedata
+    %small
+      extend thumbnail/clip-able resource
+
 %h2 Thumbanils
 %p="You can see/edit this data at <a href='#{WEDATA_THUMBNAIL}'>QuoteIt-thumbnail DB</a>."
 %ul
@@ -25,3 +30,4 @@
 
 %form{:action => url_for(:wedata_update), :method => :post}
   %input.danger.btn{:value=>'Update cache', :type=>'submit'}
+
