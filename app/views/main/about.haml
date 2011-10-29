@@ -1,0 +1,22 @@
+.page-header
+  %h1
+    About
+    %small Introduction, Develop guide, Authors, and more
+
+%h2 Introduction
+%p <span class="brand">QuoteIt</span> provide API to quote web resource. Written by using <a href="http://www.padrinorb.com">Padrino web framework</a> and hosted on <a href="http://www.heroku.com">Heroku</a>.
+
+%h2 How to develop plugins
+%ol
+  %li Write and test plugin at <a href="#{url_for :sandbox_index}">Sandbox</a>.
+  %li Register the plugin to <a href='#{WEDATA_THUMBNAIL}'>QuoteIt-thumbnail DB</a> or <a href='#{WEDATA_CLIP}'>QuoteIt-clip DB</a>.
+  %li Upgarde <span class="brand">QuoteIt</a> at <a href="#{url_for :wedata_index}">Upgrade</a>.
+%h2 Fork on Github
+%p Download, fork, pull, file issues, and more with
+%h2 Author
+%ul
+  %li
+    %a{:href=>'http://twitter.com/mzp'} @mzp
+
+
+

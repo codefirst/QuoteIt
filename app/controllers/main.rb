@@ -17,4 +17,8 @@ Thumbnailr.controllers do
     @title = 'Plugins'
     render 'main/plugins'
   end
+
+  get '/about' do
+    render 'main/about'
+  end
 end
