@@ -26,7 +26,7 @@
             %li
               =link_to 'Sandbox', url_for(:sandbox_index)
             %li
-              %a About
+              =link_to 'About', url_for(:about)
     .container
       .main.row
         - if flash[:notice]

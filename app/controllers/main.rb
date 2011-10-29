@@ -18,7 +18,7 @@ Thumbnailr.controllers do
     render 'main/plugins'
   end
 
-  get '/about' do
+  get :about, :map => '/about' do
     render 'main/about'
   end
 end
