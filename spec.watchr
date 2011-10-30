@@ -11,7 +11,7 @@
 
 def run(cmd)
   puts(cmd)
-  system("rspec #{cmd} && git now")
+  system("rspec #{cmd} && git now --recent")
 end
 
 # --------------------------------------------------
