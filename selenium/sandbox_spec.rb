@@ -19,6 +19,7 @@ describe "Sandbox" do
   it "thumbnail" do
     (@driver.title).should == "Quote It - quote webpage contents"
     @driver.find_element(:link, "Sandbox").click
+    sleep 1
     (@driver.title).should == "Sandbox - Quote It"
     @driver.find_element(:name, "regexp").clear
     @driver.find_element(:name, "regexp").send_keys "instagr\\.am\\/p\\/([\\w\\-]+)"
