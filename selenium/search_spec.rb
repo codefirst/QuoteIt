@@ -2,7 +2,7 @@ require "selenium-webdriver"
 require "rspec"
 include RSpec::Expectations
 
-describe "Layout" do
+describe "Search" do
   before(:each) do
     @driver = Selenium::WebDriver.for :firefox
     @driver.get "http://quoteit.heroku.com"
@@ -15,18 +15,19 @@ describe "Layout" do
     @verification_errors.should == []
   end
 
-  it "about" do
-    @driver.find_element(:link, "About").click
+  it "thumbnail" do
+    (@driver.title).should == "Quote It - quote webpage contents"
+    @driver.find_element(:name, "u").clear
+    @driver.find_element(:name, "u").send_keys "http://twitpic.com/73wiod"
+    @driver.find_element(:xpath, "//input[@value='Quote It']").click
     (@driver.title).should == "Quote It - quote webpage contents"
   end
 
-  it "top page" do
-    @driver.find_element(:link, "Quote It").click
+  it "clip" do
     (@driver.title).should == "Quote It - quote webpage contents"
-  end
-
-  it "home" do
-    @driver.find_element(:link, "Home").click
+    @driver.find_element(:name, "u").clear
+    @driver.find_element(:name, "u").send_keys "https://twitter.com/#!/twitter/status/91890490089275392"
+    @driver.find_element(:xpath, "//input[@value='Quote It']").click
     (@driver.title).should == "Quote It - quote webpage contents"
   end
 

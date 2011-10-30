@@ -2,7 +2,8 @@ require "selenium-webdriver"
 require "rspec"
 include RSpec::Expectations
 
-describe "Layout" do
+describe "Upgrade" do
+
   before(:each) do
     @driver = Selenium::WebDriver.for :firefox
     @driver.get "http://quoteit.heroku.com"
@@ -15,19 +16,12 @@ describe "Layout" do
     @verification_errors.should == []
   end
 
-  it "about" do
-    @driver.find_element(:link, "About").click
+  it "upgrade" do
     (@driver.title).should == "Quote It - quote webpage contents"
-  end
-
-  it "top page" do
-    @driver.find_element(:link, "Quote It").click
-    (@driver.title).should == "Quote It - quote webpage contents"
-  end
-
-  it "home" do
-    @driver.find_element(:link, "Home").click
-    (@driver.title).should == "Quote It - quote webpage contents"
+    @driver.find_element(:link, "Upgrade").click
+    (@driver.title).should == "Upgrade plugins - Quote It"
+    @driver.find_element(:css, "input.danger.btn").click
+    (@driver.title).should == "Upgrade plugins - Quote It"
   end
 
   def element_present?(how, what)

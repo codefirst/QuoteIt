@@ -2,7 +2,8 @@ require "selenium-webdriver"
 require "rspec"
 include RSpec::Expectations
 
-describe "Layout" do
+describe "Sandbox" do
+
   before(:each) do
     @driver = Selenium::WebDriver.for :firefox
     @driver.get "http://quoteit.heroku.com"
@@ -15,19 +16,17 @@ describe "Layout" do
     @verification_errors.should == []
   end
 
-  it "about" do
-    @driver.find_element(:link, "About").click
+  it "thumbnail" do
     (@driver.title).should == "Quote It - quote webpage contents"
-  end
-
-  it "top page" do
-    @driver.find_element(:link, "Quote It").click
-    (@driver.title).should == "Quote It - quote webpage contents"
-  end
-
-  it "home" do
-    @driver.find_element(:link, "Home").click
-    (@driver.title).should == "Quote It - quote webpage contents"
+    @driver.find_element(:link, "Sandbox").click
+    (@driver.title).should == "Sandbox - Quote It"
+    @driver.find_element(:name, "regexp").clear
+    @driver.find_element(:name, "regexp").send_keys "instagr\\.am\\/p\\/([\\w\\-]+)"
+    @driver.find_element(:name, "thumbnail").clear
+    @driver.find_element(:name, "thumbnail").send_keys "http://instagr.am/p/$1/media/?size=t"
+    @driver.find_element(:name, "url").clear
+    @driver.find_element(:name, "url").send_keys "http://instagr.am/p/RSU8j/"
+    @driver.find_element(:css, "input.btn.primary").click
   end
 
   def element_present?(how, what)
