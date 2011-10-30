@@ -1,6 +1,4 @@
 Thumbnailr.controllers :sandbox do
-
-
   get :index, :map => '/sandbox' do
     @title = 'Sandbox'
     render 'sandbox/index'
