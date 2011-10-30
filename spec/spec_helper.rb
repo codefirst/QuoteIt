@@ -11,3 +11,8 @@ def app
   #   Padrino.application
   Thumbnailr.tap { |app|  }
 end
+
+shared_examples_for "success" do
+  subject { last_response }
+  it { should be_ok }
+end

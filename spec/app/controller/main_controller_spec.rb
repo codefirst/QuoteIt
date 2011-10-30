@@ -2,11 +2,6 @@ require 'spec_helper'
 require 'ostruct'
 
 describe "MainController" do
-  shared_examples_for "success" do
-    subject { last_response }
-    it { should be_ok }
-  end
-
   describe "/" do
     before { get "/" }
     it_should_behave_like "success"
