@@ -52,7 +52,9 @@ class Html
       item = self.where.to_a.find do|x|
         url =~ /#{x.regexp}/
       end
-      run_rule url, :regexp=>item.regexp, :clip=>item.clip, :transform => item.transform
+      if item then
+        run_rule url, :regexp=>item.regexp, :clip=>item.clip, :transform => item.transform
+      end
     end
 
     def run_rule(url, rule)
