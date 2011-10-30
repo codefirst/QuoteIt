@@ -1,6 +1,7 @@
 require 'wedata_util'
 
 class Thumbnail
+  class NotMatchError < StandardError; end
   include Mongoid::Document
   include Mongoid::Timestamps
   extend WedataUtil
@@ -35,7 +36,7 @@ class Thumbnail
       if url =~ /#{rule[:regexp]}/ then
         eval_regexp url, rule[:regexp], rule[:thumbnail]
       else
-        raise 'not_match'
+        raise NotMatchError.new
       end
     end
   end
