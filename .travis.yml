@@ -1,2 +1,5 @@
 before_script: sh -e /etc/init.d/xvfb start
 script: bundle exec rake travis
+notifications:
+ email: false
+ webhooks: http://dev.codefirst.org/puke_bot_travis.cgi
