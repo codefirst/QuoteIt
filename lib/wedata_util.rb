@@ -4,11 +4,13 @@
 module WedataUtil
   def eval_regexp(str, regexp, new)
     match = Regexp.new(regexp).match(str)
-    new = new.dup
-    match.captures.each_with_index do|capture,i|
-      new.gsub!("$#{i+1}", capture)
+    if match then
+      new = new.to_s.dup
+      match.captures.each_with_index do|capture,i|
+        new.gsub!("$#{i+1}", capture)
+      end
+      new
     end
-    new
   end
 
   def status(item)

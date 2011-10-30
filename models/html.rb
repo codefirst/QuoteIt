@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'wedata_util'
+require 'open-uri'
 
 class CleanRoom
   attr_reader :content, :json
@@ -21,6 +22,8 @@ class CleanRoom
 end
 
 class Html
+  class NotMatchError < StandardError; end
+
   include Mongoid::Document
   include Mongoid::Timestamps
   extend WedataUtil
@@ -48,7 +51,6 @@ class Html
     end
 
     def get(url)
-      logger.info "get for #{url}"
       item = self.where.to_a.find do|x|
         url =~ /#{x.regexp}/
       end
@@ -58,16 +60,20 @@ class Html
     end
 
     def run_rule(url, rule)
-      clip = eval_regexp url, rule[:regexp], rule[:clip]
-      if rule[:transform] and not rule[:transform].empty? then
-        CleanRoom.new(clip).instance_eval do
-          proc {
-            $SAFE = 4
-            clip = eval rule[:transform]
-          }.call
+      if url =~ /#{rule[:regexp]}/ then
+        clip = eval_regexp url, rule[:regexp], rule[:clip]
+        if rule[:transform] and not rule[:transform].empty? then
+          CleanRoom.new(clip).instance_eval do
+            proc {
+              $SAFE = 4
+              clip = eval rule[:transform]
+            }.call
+          end
         end
+        "<div clas='quote-it clip'>#{clip}</div>"
+      else
+        raise NotMatchError.new
       end
-      "<div clas='quote-it clip'>#{clip}</div>"
     end
 
     def fallback(url)
