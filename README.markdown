@@ -35,6 +35,11 @@ Test
 
     $ bundle exec padrino rake spec
 
+Or
+
+    $ gem install watchr
+    $ watchr spec.watchr
+
 Author
 ------------------------------
  * @mzp
