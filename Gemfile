@@ -9,6 +9,7 @@ gem 'json'
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'dalli'
+gem 'oauth'
 
 # Component requirements
 gem 'bcrypt-ruby', :require => "bcrypt"

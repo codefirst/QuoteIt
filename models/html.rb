@@ -4,11 +4,19 @@ require 'open-uri'
 
 class CleanRoom
   attr_reader :content, :json
+
+  @@twitter = Twitter.new
+
   def initialize(url)
     key = "data::#{url}"
     unless Thumbnailr.cache.get key then
-      open(url) do|io|
-        Thumbnailr.cache.set key, io.read
+      if @@twitter.include? url then
+        logger.info "get by OAuth: #{url}"
+        Thumbnailr.cache.set key, @@twitter.get(url)
+      else
+        open(url) do|io|
+          Thumbnailr.cache.set key, io.read
+        end
       end
     end
 

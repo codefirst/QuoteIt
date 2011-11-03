@@ -38,6 +38,7 @@ GEM
       mongo (~> 1.3)
       tzinfo (~> 0.3.22)
     multi_json (1.0.3)
+    oauth (0.4.5)
     padrino (0.10.5)
       padrino-admin (= 0.10.5)
       padrino-cache (= 0.10.5)
@@ -113,6 +114,7 @@ DEPENDENCIES
   haml
   json
   mongoid (= 2.2.3)
+  oauth
   padrino (= 0.10.5)
   rack-test
   rake
