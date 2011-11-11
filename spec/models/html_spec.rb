@@ -38,9 +38,38 @@ describe "Html Model" do
       it { expect {
           Html.run_rule('http://codefirst.org',
                         :regexp => 'example\\.com/(.*)',
-                        :thumbnail => 'http://example.com/$1.png')
+                        :clip => 'http://example.com/$1.png')
         }.to raise_error(Html::NotMatchError)
       }
+    end
+  end
+
+  describe "transform" do
+    before do
+      @cache = mock(:cache)
+      @cache.stub(:get => '{ "div" : "json_content" }',
+                  :set => nil)
+      Thumbnailr.stub(:cache => @cache)
+    end
+
+    describe "original_url" do
+      subject {
+        Html.run_rule('http://example.com/foo',
+                      :regexp => 'http://example\.com/(.*)',
+                      :clip   => 'http://example\.com/$1.jpg',
+                      :transform => 'original_url')
+      }
+      it { should be_include('http://example.com/foo') }
+    end
+
+    describe "clip_url" do
+      subject {
+        Html.run_rule('http://example.com/foo',
+                      :regexp => 'http://example\.com/(.*)',
+                      :clip   => 'http://example.com/$1.json',
+                      :transform => 'clip_url').tap{|x| p x}
+      }
+      it { should be_include('http://example.com/foo.json') }
     end
   end
 

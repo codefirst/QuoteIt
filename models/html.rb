@@ -3,18 +3,20 @@ require 'wedata_util'
 require 'open-uri'
 
 class CleanRoom
-  attr_reader :content, :json
+  attr_reader :content, :json, :original_url, :clip_url
 
   @@twitter = Twitter.new
 
-  def initialize(url)
-    key = "data::#{url}"
+  def initialize(original_url, clip_url)
+    @original_url = original_url
+    @clip_url     = clip_url
+
+    key = "data::#{clip_url}"
     unless Thumbnailr.cache.get key then
-      if @@twitter.include? url then
-        logger.info "get by OAuth: #{url}"
-        Thumbnailr.cache.set key, @@twitter.get(url)
+      if @@twitter.include? clip_url then
+        Thumbnailr.cache.set key, @@twitter.get(clip_url)
       else
-        open(url) do|io|
+        open(clip_url) do|io|
           Thumbnailr.cache.set key, io.read
         end
       end
@@ -71,7 +73,7 @@ class Html
       if url =~ /#{rule[:regexp]}/ then
         clip = eval_regexp url, rule[:regexp], rule[:clip]
         if rule[:transform] and not rule[:transform].empty? then
-          CleanRoom.new(clip).instance_eval do
+          CleanRoom.new(url, clip).instance_eval do
             proc {
               $SAFE = 4
               clip = eval rule[:transform]
