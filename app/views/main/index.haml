@@ -38,9 +38,12 @@
   %dt Get clip from <a href='https://twitter.com/#!/twitter/status/91890490089275392'>https://twitter.com/#!/twitter/status/91890490089275392</a>
   %dd=url_link(url_for(:show, :u=>'https://twitter.com/#!/twitter/status/91890490089275392'))
 
-  %h2 Donation
-  %p
-    %a{:href=>'http://www.pledgie.com/campaigns/16272'}
-      %img{:alt=>'Click here to lend your support to: QuoteIt and make a donation at www.pledgie.com !',
-           :src=>'http://www.pledgie.com/campaigns/16272.png?skin_name=chrome'}
+.page-header
+  %h2
+    Donation
+    %small support ours
+%p
+  %a{:href=>'http://www.pledgie.com/campaigns/16272'}
+    %img{:alt=>'Click here to lend your support to: QuoteIt and make a donation at www.pledgie.com !',
+         :src=>'http://www.pledgie.com/campaigns/16272.png?skin_name=chrome'}
 
