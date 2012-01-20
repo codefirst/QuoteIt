@@ -1,7 +1,7 @@
 QuoteIt: quote from any web resource
 ==============================================
 
-[![Build Status](http://travis-ci.org/codefirst/QuoteIt.png)](http://travis-ci.org/codefirst/QuoteIt)
+[![Build Status](https://secure.travis-ci.org/codefirst/QuoteIt.png)](http://travis-ci.org/codefirst/QuoteIt)
 
 Overview
 ------------------------------
@@ -43,3 +43,5 @@ Or
 Author
 ------------------------------
  * @mzp
+ * @mallowlabs
+

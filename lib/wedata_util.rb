@@ -7,6 +7,9 @@ module WedataUtil
     if match then
       new = new.to_s.dup
       match.captures.each_with_index do|capture,i|
+        new.gsub!("$$#{i+1}", CGI.escape(capture))
+      end
+      match.captures.each_with_index do|capture,i|
         new.gsub!("$#{i+1}", capture)
       end
       new

@@ -21,7 +21,7 @@
       %label Thumbnail URL
       .input
         %input.thumbnail.xlarge{:placeholder=> 'http://example.com/thumbnail/$1', :name => 'thumbnail'}
-        %p.help-block <strong>Note:</strong> $1, $2, etc. hold the text matched by the first, second, and following capturing groups.
+        %p.help-block <strong>Note:</strong> $1, $2, etc. hold the text matched by the first, second, and following capturing groups. $$1, $$2, etc. hold the escape texts.
   .web-clip.plugin{:style=>'display:none'}
     .clearfix
       %label Regexp for URL

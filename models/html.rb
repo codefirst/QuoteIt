@@ -23,7 +23,7 @@ class CleanRoom
     end
 
     @content = Thumbnailr.cache.get key
-    @json    = JSON.parse @content
+    @json    = JSON.parse @content rescue JSON::ParserError
   rescue OpenURI::HTTPError => e
     logger.info e.inspect
     logger.info e.io.meta
