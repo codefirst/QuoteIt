@@ -11,6 +11,8 @@ class CleanRoom
     @original_url = original_url
     @clip_url     = clip_url
 
+    return if clip_url.blank?
+
     key = "data::#{clip_url}"
     unless Thumbnailr.cache.get encode(key) then
       if @@twitter.include? clip_url then

@@ -71,6 +71,17 @@ describe "Html Model" do
       }
       it { should be_include('http://example.com/foo.json') }
     end
+
+    context "empty clip" do
+      subject {
+        Html.run_rule('http://example.com/foo',
+                      :regexp => 'example\\.com/(.*)',
+                      :clip => nil,
+                      :transform => '$1')
+      }
+      it { should be_include('foo') }
+    end
+
   end
 
   describe "select best rule" do
