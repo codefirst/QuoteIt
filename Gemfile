@@ -21,7 +21,7 @@ gem 'bson_ext'
 # Test requirements
 gem 'rspec', :group => "test"
 gem 'rack-test', :require => "rack/test", :group => "test"
-gem 'selenium-webdriver', :group => "test"
+gem 'selenium-webdriver', '2.25.0', :group => "test"
 
 # Padrino Stable Gem
 gem 'padrino', '0.10.5'
