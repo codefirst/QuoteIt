@@ -66,8 +66,8 @@ class Html
 
     def [](url)
       get(url)       ||
-      opengraph(url) ||
-      fallback(url)
+      fallback(url)  ||
+      opengraph(url)
     end
 
     def get(url)
