@@ -64,7 +64,9 @@ class Html
     end
 
     def [](url)
-      get(url) || fallback(url)
+      get(url)       ||
+      opengraph(url) ||
+      fallback(url)
     end
 
     def get(url)
@@ -91,6 +93,19 @@ class Html
       else
         raise NotMatchError.new
       end
+    end
+
+    def opengraph(url)
+	graph = OpenGraph.fetch url
+	if graph then
+	  <<END
+<div clas='quote-it clip'>
+  <img src="#{graph.image}" style="max-height: 100px" />
+  <div><a href="#{graph.url}">#{graph.title}</a></div>
+  <div>#{graph.description}</div>
+</div>
+END
+	end
     end
 
     def fallback(url)

@@ -10,6 +10,7 @@ gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'dalli'
 gem 'oauth'
+gem 'opengraph'
 
 # Component requirements
 gem 'bcrypt-ruby', :require => "bcrypt"

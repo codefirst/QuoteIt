@@ -137,6 +137,17 @@ describe "Html Model" do
       it { should be_include('json_content') }
     end
 
+    context "opengraph" do
+      before do
+        OpenGraph.should_receive(:fetch) {
+          OpenStruct.new(:title => 'hoge')
+        }
+      end
+
+      subject { Html['http://hoge.com'] }
+      it { should be_include 'hoge' }
+    end
+
     context "fallback" do
       before do
         Thumbnail.should_receive(:[]) {
