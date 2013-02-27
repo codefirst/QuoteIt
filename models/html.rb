@@ -107,8 +107,12 @@ class Html
 	if graph then
 	  <<END
 <div clas='quote-it clip' style="border-radius: 5px 5px 5px 5px; box-shadow: 1px 1px 2px #999999; padding: 10px;">
-  <img src="#{escapeHTML graph.image}" style="max-height: 100px" />
-  <div><a href="#{escapeHTML graph.url}">#{escapeHTML graph.title}</a></div>
+  <div>
+    <a href="#{escapeHTML graph.url}" class="quote-it thumbnail" target="_blank">
+      <img src="#{escapeHTML graph.image}" style="max-height: 100px" />
+    </a>
+  </div>
+  <div><a href="#{escapeHTML graph.url}" target="_blank">#{escapeHTML graph.title}</a></div>
   <div>#{escapeHTML graph.description}</div>
 </div>
 END
