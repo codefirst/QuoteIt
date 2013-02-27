@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'wedata_util'
 require 'open-uri'
+require 'cgi'
 
 class CleanRoom
   attr_reader :content, :json, :original_url, :clip_url
@@ -95,14 +96,20 @@ class Html
       end
     end
 
+    def escapeHTML(s)
+      if s then
+        CGI.escapeHTML s
+      end
+    end
+
     def opengraph(url)
 	graph = OpenGraph.fetch url
 	if graph then
 	  <<END
 <div clas='quote-it clip'>
-  <img src="#{graph.image}" style="max-height: 100px" />
-  <div><a href="#{graph.url}">#{graph.title}</a></div>
-  <div>#{graph.description}</div>
+  <img src="#{escapeHTML graph.image}" style="max-height: 100px" />
+  <div><a href="#{escapeHTML graph.url}">#{escapeHTML graph.title}</a></div>
+  <div>#{escapeHTML graph.description}</div>
 </div>
 END
 	end
