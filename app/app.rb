@@ -41,9 +41,9 @@ class Thumbnailr < Padrino::Application
   # You can configure for a specified environment like:
   #
   configure :production do
-    set :cache, ::Dalli::Client.new(ENV['MEMCACHE_SERVERS'],
-                                    :username => ENV['MEMCACHE_USERNAME'],
-                                    :password => ENV['MEMCACHE_PASSWORD'],
+    set :cache, ::Dalli::Client.new(ENV['MEMCACHE_SERVERS'] || ENV['MEMCACHIER_SERVERS'],
+                                    :username => ENV['MEMCACHE_USERNAME'] || ENV['MEMCACHIER_USERNAME'],
+                                    :password => ENV['MEMCACHE_PASSWORD'] || ENV['MEMCACHIER_PASSWORD'],
                                     :expires_in => 60)
   end
 
