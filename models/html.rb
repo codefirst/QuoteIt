@@ -59,9 +59,17 @@ class Html
     end
 
     def [](url)
-      get(url)       ||
-      fallback(url)  ||
-      opengraph(url)
+      key = Digest::SHA1.hexdigest("result:#{url}")
+      html = Thumbnailr.cache.get key
+      unless html then
+        html = get(url) || opengraph(url) || fallback(html)
+
+        if html then
+          Thumbnailr.cache.set key, html
+        end
+      end
+
+      html
     end
 
     def get(url)
@@ -86,7 +94,7 @@ class Html
         end
         "<div clas='quote-it clip'>#{clip}</div>"
       else
-        raise NotMatchError.new
+        nil
       end
     end
 
@@ -97,9 +105,9 @@ class Html
     end
 
     def opengraph(url)
-	graph = OpenGraph.fetch url
-	if graph then
-	  <<END
+      graph = OpenGraph.fetch url
+      if graph then
+        <<END
 <div clas='quote-it clip' style="border-radius: 5px 5px 5px 5px; box-shadow: 1px 1px 2px #999999; padding: 10px;">
   <div>
     <a href="#{escapeHTML graph.url}" class="quote-it thumbnail" target="_blank">
@@ -110,14 +118,12 @@ class Html
   <div>#{escapeHTML graph.description}</div>
 </div>
 END
-	end
+      end
+    rescue
+      nil
     end
 
     def fallback(url)
-      image = Thumbnail[url]
-      if image then
-        "<a class='quote-it thumbnail' href='#{url}' target='_blank'><img src='#{image}' /></a>"
-      end
     end
   end
 end
