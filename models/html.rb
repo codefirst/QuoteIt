@@ -6,8 +6,6 @@ require 'cgi'
 class CleanRoom
   attr_reader :content, :json, :original_url, :clip_url
 
-  @@twitter = Twitter.new
-
   def initialize(original_url, clip_url)
     @original_url = original_url
     @clip_url     = clip_url
@@ -16,12 +14,8 @@ class CleanRoom
 
     key = "data::#{clip_url}"
     unless Thumbnailr.cache.get encode(key) then
-      if @@twitter.include? clip_url then
-        Thumbnailr.cache.set encode(key), @@twitter.get(clip_url)
-      else
-        open(clip_url) do|io|
-          Thumbnailr.cache.set encode(key), io.read
-        end
+      open(clip_url) do|io|
+        Thumbnailr.cache.set encode(key), io.read
       end
     end
 

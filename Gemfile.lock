@@ -47,7 +47,6 @@ GEM
       tzinfo (~> 0.3.22)
     multi_json (1.6.1)
     nokogiri (1.4.7)
-    oauth (0.4.7)
     opengraph (0.0.4)
       hashie
       nokogiri (~> 1.4.0)
@@ -134,7 +133,6 @@ DEPENDENCIES
   haml
   json
   mongoid (= 2.2.3)
-  oauth
   opengraph
   padrino (= 0.10.5)
   rack-test
