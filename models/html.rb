@@ -61,8 +61,13 @@ class Html
     def [](url)
       key = Digest::SHA1.hexdigest("result:#{url}")
       html = Thumbnailr.cache.get key
+
+      logger.info "memcached: #{html}"
       unless html then
-        html = get(url) || opengraph(url) || fallback(html)
+        # prevent loop request
+        Thumbnailr.cache.set key, fallback(url)
+
+        html = get(url) || opengraph(url) || thumbnail(url) || fallback(url)
 
         if html then
           Thumbnailr.cache.set key, html
@@ -123,12 +128,15 @@ END
       nil
     end
 
-
-    def fallback(url)
+    def thumbnail(url)
       image = Thumbnail[url]
       if image then
         "<a class='quote-it thumbnail' href='#{url}' target='_blank'><img src='#{image}' /></a>"
       end
+    end
+
+    def fallback(url)
+        "<a class='quote-it href='#{url}' target='_blank'>#{url}</a>"
     end
   end
 end
