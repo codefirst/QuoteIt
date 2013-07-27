@@ -2,6 +2,7 @@
 require 'wedata_util'
 require 'open-uri'
 require 'cgi'
+require 'timeout'
 
 class CleanRoom
   attr_reader :content, :json, :original_url, :clip_url
@@ -67,10 +68,17 @@ class Html
         # prevent loop request
         Thumbnailr.cache.set key, fallback(url)
 
-        html = get(url) || opengraph(url) || thumbnail(url) || fallback(url)
+        n = ENV['CLIP_TIMEOUT'] || 10
+        begin
+          timeout(n.to_i) do
+            html = get(url) || opengraph(url) || thumbnail(url) || fallback(url)
 
-        if html then
-          Thumbnailr.cache.set key, html
+            if html then
+              Thumbnailr.cache.set key, html
+            end
+          end
+        rescue Timeout::Error => e
+          logger.error e
         end
       end
 
@@ -136,7 +144,7 @@ END
     end
 
     def fallback(url)
-        "<a class='quote-it href='#{url}' target='_blank'>#{url}</a>"
+        "<a class='quote-it' href='#{url}' target='_blank'>#{url}</a>"
     end
   end
 end
