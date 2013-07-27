@@ -123,7 +123,12 @@ END
       nil
     end
 
+
     def fallback(url)
+      image = Thumbnail[url]
+      if image then
+        "<a class='quote-it thumbnail' href='#{url}' target='_blank'><img src='#{image}' /></a>"
+      end
     end
   end
 end
