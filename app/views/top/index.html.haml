@@ -1,1 +1,28 @@
-hi
+%h1.brand.logo Quote It
+%form.text-center
+  .input-append
+    %input.offset2.span5{ type: 'text', placeholder: 'URL for quote (e.g. http://twitpic.com/73wiod)' }
+    %button.btn.btn-primary{ type: 'submit'} Search
+
+.row
+  .span4
+    %h3 About
+    %p <span class="brand">QutoteIt</span> provides API to get the thumbnail image and the clip of a web resource.
+  .span4
+    %h3 Support services
+    %ul
+      %li=link_to('Twitter','http://twitter.com')
+      %li=link_to('Twitpic','http://twitpic.com')
+      %li=link_to('yfrog','http://yfrog.com')
+      %li=link_to('YouTube','http://youtube.com')
+      %li=link_to('NicoVideo','http://www.nicovideo.jp')
+      %li ... and more
+      %p="You could see a full-list at page."
+  .span4
+    %h3 Example
+    %dl
+      %dt Get thumbnail from <a href='http://twitpic.com/73wiod'>http://twitpic.com/73wiod</a>
+      %dd xxx
+      %dt Get clip from <a href='https://twitter.com/#!/twitter/status/91890490089275392'>https://twitter.com/#!/twitter/status/91890490089275392</a>
+      %dd xxx
+
