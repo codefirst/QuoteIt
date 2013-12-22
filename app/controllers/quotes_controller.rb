@@ -1,4 +1,5 @@
 class QuotesController < ApplicationController
+
   def thumbnail
     url = params[:u]
     thumbnail = ThumbnailRule.quote(url)
@@ -35,5 +36,12 @@ class QuotesController < ApplicationController
         format.html { render text: html }
       end
     end
+  end
+
+  def show
+    @url  = params[:u]
+    @thumbnail = ThumbnailRule.quote @url
+    @page      = HtmlRule.quote @url
+    render status: 404, text: '404 Not found' unless @page
   end
 end

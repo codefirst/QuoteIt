@@ -1,8 +1,8 @@
 %h1.brand.logo Quote It
-%form.text-center
+=form_tag(show_path, class: 'text-center', method: 'get') do
   .input-append
-    %input.offset2.span5{ type: 'text', placeholder: 'URL for quote (e.g. http://twitpic.com/73wiod)' }
-    %button.btn.btn-primary{ type: 'submit'} Search
+    =text_field_tag 'u', '', class: 'offset2 span5', placeholder: 'URL for quote (e.g. http://twitpic.com/73wiod)'
+    =button_tag('QuoteIt', type: 'submit', class: 'btn btn-primary', name: nil)
 
 .row
   .span4
@@ -17,7 +17,7 @@
       %li=link_to('YouTube','http://youtube.com')
       %li=link_to('NicoVideo','http://www.nicovideo.jp')
       %li ... and more
-      %p="You could see a full-list at page."
+      %p!="You could see a <a href='#{plugins_path}'>full-list</a> at page."
   .span4
     %h3 Example
     %dl
