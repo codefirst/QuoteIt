@@ -17,3 +17,23 @@ FactoryGirl.define do
     thumbnail 'http://example.com/$1.png'
   end
 end
+
+FactoryGirl.define do
+  factory :html_rule_a, class: 'HtmlRule' do
+    regexp 'codefirst\.org/(.*)'
+    clip   'http://codefirst.org/$1.html'
+    transform ''
+  end
+
+  factory :html_rule_b, class: 'HtmlRule' do
+    regexp 'example\.com/(.*)'
+    clip  'http://example.com/$1.html'
+    transform ''
+  end
+
+  factory :html_rule_c, class: 'HtmlRule' do
+    regexp 'json\.com/(.*)'
+    clip 'http://example.com/$1.json'
+    transform 'json["div"]'
+  end
+end

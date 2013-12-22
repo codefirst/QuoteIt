@@ -8,6 +8,7 @@ Quoteit::Application.routes.draw do
   resources :plugins
 
   get 'thumbnail' => 'quotes#thumbnail'
+  get 'clip' => 'quotes#html'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
