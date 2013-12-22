@@ -1,0 +1,13 @@
+{
+  "thumbnails" : [
+    {
+      "regexp"   : "dl\\.dropbox\\.com/u/(.*(?:jpg|png|gif|jpeg))",
+      "thumbnail": "http://dl.dropbox.com/u/$1",
+      "service"  : {
+        "name": "Dropbox",
+        "url" : "http://dropbox.com/"
+      }
+   ],
+   "htmls" : [
+   ]
+}
