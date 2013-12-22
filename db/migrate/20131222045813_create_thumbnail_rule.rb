@@ -14,7 +14,7 @@ class CreateThumbnailRule < ActiveRecord::Migration
     create_table :html_rules do |t|
       t.string :regexp
       t.string :clip
-      t.string :transform
+      t.text :transform
       t.integer :service_id
     end
   end
