@@ -82,3 +82,10 @@ Example:
  * `transform` : Ruby script to obtain HTML
  * `service` : (optional) inforamion for this service
 
+## How to run on Heroku
+Only push this!!
+
+    $ heroku create
+    $ git push heroku master
+    $ heroku run "rake db:migrate"
+    $ heroku run "rake db:seed"
