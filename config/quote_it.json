@@ -1,22 +1,287 @@
 {
-  "thumbnails" : [
+  "thumbnails": [
     {
-      "regexp"   : "dl\\.dropbox\\.com/u/(.*(?:jpg|png|gif|jpeg))",
+      "regexp": "pics.lockerz.com\\/s\\/([\\d]+)",
+      "thumbnail": "http://api.plixi.com/api/tpapi.svc/json/imagefromurl?size=mobile&url=http://pics.lockerz.com/s/$1",
+      "service": {
+        "url": "http://lockerz.com/",
+        "name": "Lockerz"
+      }
+    },
+    {
+      "regexp": "ow\\.ly/i/(.+)",
+      "thumbnail": "http://static.ow.ly/photos/thumb/$1.jpg",
+      "service": {
+        "url": "http://ow.ly/",
+        "name": "Ow.ly"
+      }
+    },
+    {
+      "regexp": "https://cacoo.com/diagrams/(.+)",
+      "thumbnail": "https://cacoo.com/diagrams/$1-w450-h350.png",
+      "service": {
+        "url": "https://cacoo.com/",
+        "name": "Cacoo"
+      }
+    },
+    {
+      "regexp": "amazon.co.jp/(.+)/([A-Z\\d]+)\\/?",
+      "thumbnail": "http://images-jp.amazon.com/images/P/$2.09.MZZZZZZZ.jpg",
+      "service": {
+        "url": "http://www.amazon.co.jp/",
+        "name": "Amazon-jp"
+      }
+    },
+    {
+      "regexp": "(.*\\.(?:jpg|jpeg|png|gif)\\z)",
+      "thumbnail": "$1",
+      "service": {
+        "url": "",
+        "name": "Direct Link"
+      }
+    },
+    {
+      "regexp": "instagr(?:\\.am|am\\.com)\\/p\\/([\\w\\-]+)",
+      "thumbnail": "http://instagr.am/p/$1/media/?size=t",
+      "service": {
+        "url": "http://instagr.am",
+        "name": "Instagram"
+      }
+    },
+    {
+      "regexp": "gyazo\\.com/(.+)(?:\\.png)?",
+      "thumbnail": "http://gyazo.com/$1.png",
+      "service": {
+        "url": "http://gyazo.com",
+        "name": "Gyazo"
+      }
+    },
+    {
+      "regexp": "dl\\.dropbox\\.com/u/(.*(?:jpg|png|gif|jpeg))",
       "thumbnail": "http://dl.dropbox.com/u/$1",
-      "service"  : {
-        "name": "Dropbox",
-        "url" : "http://dropbox.com/"
+      "service": {
+        "url": "http://dropbox.com/",
+        "name": "Dropbox"
+      }
+    },
+    {
+      "regexp": "plixi.com\\/p\\/([\\d]+)",
+      "thumbnail": "http://api.plixi.com/api/tpapi.svc/json/imagefromurl?size=thumbnail&url=http://plixi.com/p/$1",
+      "service": {
+        "url": "http://plixi.com",
+        "name": "plixi"
+      }
+    },
+    {
+      "regexp": "img.ly\\/([\\d\\w]+)",
+      "thumbnail": "http://img.ly/show/thumb/$1",
+      "service": {
+        "url": "http://img.ly",
+        "name": "img.ly"
+      }
+    },
+    {
+      "regexp": "www\\.nicovideo\\.jp\\/watch\\/(?:[a-z1-9]*?)([\\d]+)\\??",
+      "thumbnail": "http://tn-skr.smilevideo.jp/smile?i=$1",
+      "service": {
+        "url": "http://www.nicovideo.jp",
+        "name": "ニコニコ動画"
+      }
+    },
+    {
+      "regexp": "(?:youtu\\.be\\/|www\\.youtube\\.com\\/watch\\?v\\=)([\\d\\-\\w]+)",
+      "thumbnail": "http://i.ytimg.com/vi/$1/hqdefault.jpg",
+      "service": {
+        "url": "http://www.youtube.com",
+        "name": "YouTube"
+      }
+    },
+    {
+      "regexp": "yfrog.com\\/z?\\/?([\\d\\w]+)",
+      "thumbnail": "http://yfrog.com/$1.th.jpg",
+      "service": {
+        "url": "http://yfrog.com",
+        "name": "yfrog"
+      }
+    },
+    {
+      "regexp": "(f\\.hatena\\.ne\\.jp\\/(([^\\/])[^\\/]+)\\/(([0-9]{8})[0-9]+))",
+      "thumbnail": "http://img.f.hatena.ne.jp/images/fotolife/$3/$2/$5/$4_120.jpg",
+      "service": {
+        "url": "http://f.hatena.ne.jp",
+        "name": "Hatena fotolife"
       }
     },
     {
       "regexp": "twitpic\\.com\\/([A-z0-9]+)",
       "thumbnail": "http://twitpic.com/show/thumb/$1",
-      "service" : {
-        "name": "Twitpic",
-        "url": "http://twitpic.com"
-        }
+      "service": {
+        "url": "http://twitpic.com",
+        "name": "Twitpic"
+      }
+    },
+    {
+      "regexp": "movapic\\.com\\/pic\\/([\\d\\w]+)",
+      "thumbnail": "http://image.movapic.com/pic/s_$1.jpeg",
+      "service": {
+        "url": "http://movapic.com",
+        "name": "携帯百景"
+      }
     }
   ],
-  "htmls" : [
+  "htmls": [
+    {
+      "regexp": "https://github.com/([^/]*)/([^/]*)/pull/(\\d+)",
+      "clip": "https://api.github.com/repos/$1/$2/pulls/$3",
+      "transform": "\"<a target='_blank' href='#{json[\"html_url\"]}'>[#{$2}] Pull Request \\##{json[\"number\"]}: #{json[\"title\"]}</a>\"",
+      "service": {
+        "name": "Github Pull Request",
+        "url": "http://github.com"
+      }
+    },
+    {
+      "regexp": "https?:\\/\\/itunes\\.apple\\.com\\/(\\w+)\\/(\\w+)/(.+)/id(\\d+)(.*)",
+      "clip": "http://itunes.apple.com/lookup?country=$1&id=$4",
+      "transform": "track = \"#{json['results'][0]['trackName'] || json['results'][0]['collectionName']} - #{json['results'][0]['artistName']}\".gsub('&', '&')\r\n\"<a class='quote-it thumbnail' target='_blank' href='#{original_url}' ><img style='height:100px' src='#{json['results'][0]['artworkUrl100']}' /> #{track}</a>\"",
+      "service": {
+        "name": "iTunes Preview",
+        "url": "https://itunes.apple.com/"
+      }
+    },
+    {
+      "regexp": "(https?:\\/\\/\\w+-etherpad\\.herokuapp\\.com\\/p\\/\\w+)",
+      "clip": null,
+      "transform": "\"<iframe src='#{$1}?showControls=true&showChat=true&showLineNumbers=true&useMonospaceFont=false' width='600' height='300'></iframe>\"",
+      "service": {
+        "name": "Etherpad Lite",
+        "url": "https://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&ved=0CEIQFjAC&url=http%3A%2F%2Fetherpad.org%2F&ei=dKL2UOlgi8mYBZC2gJAN&usg=AFQjCNFGqtdp_2XtgkqopSsKZbyFf4fJog&sig2=9fcbmL5nVCwFP8AgEuxVtw&bvm=bv.41018144,d.dGY"
+      }
+    },
+    {
+      "regexp": "http://seiga.nicovideo.jp/seiga/im(\\d+)\\/?",
+      "clip": "",
+      "transform": "\"<iframe width='312' height='176' src='http://ext.seiga.nicovideo.jp/thumb/im#{$1}' scrolling='no' style='border:solid 1px #888;' frameborder='0'></iframe>\"",
+      "service": {
+        "name": "ニコニコ静画",
+        "url": "http://seiga.nicovideo.jp/"
+      }
+    },
+    {
+      "regexp": "http://www\\.screenr\\.com/(\\w+)",
+      "clip": "http://www.screenr.com/embed/$1",
+      "transform": "\"<iframe src='#{clip_url}' width='650' height='396' frameborder='0'></iframe>\"",
+      "service": {
+        "name": "Screenr",
+        "url": "http://www.screenr.com/"
+      }
+    },
+    {
+      "regexp": "http://dashbozu.herokuapp.com/show/(.*)",
+      "clip": "http://dashbozu.herokuapp.com/embed/$1",
+      "transform": "content",
+      "service": {
+        "name": "dashbozu",
+        "url": "http://dashbozu.herokuapp.com/"
+      }
+    },
+    {
+      "regexp": "http://live\\.nicovideo\\.jp/watch/(lv\\d+)",
+      "clip": null,
+      "transform": "\"<iframe width='312' height='176' src='http://live.nicovideo.jp/embed/#{$1}' scrolling='no' style='border:solid 1px #CCC;' frameborder='0'></iframe>\"",
+      "service": {
+        "name": "ニコニコ生放送",
+        "url": "http://live.nicovideo.jp"
+      }
+    },
+    {
+      "regexp": "http://via\\.me/\\-(.+)",
+      "clip": "http://api.via.me/v1/posts/$1?client_id=a0dedthhjcub2a30rah5ctjcb",
+      "transform": "\"<a href='#{original_url}' class='quote-it thumbnail'><img src='#{json['response']['post']['thumb_300_url']}' /></a>\"",
+      "service": {
+        "name": "Via.Me",
+        "url": "http://via.me"
+      }
+    },
+    {
+      "regexp": "(https?:\\/\\/speakerdeck.com\\/?u?\\/[\\-\\w]+\\/?p?\\/[!:\\-\\w]+)",
+      "clip": "https://speakerdeck.com/oembed.json?url=$1",
+      "transform": "json['html']",
+      "service": {
+        "name": "Speaker Deck",
+        "url": "https://speakerdeck\\.com/"
+      }
+    },
+    {
+      "regexp": "http://soundcloud\\.com/([\\w\\-]+)/([\\w\\-]+)",
+      "clip": "http://soundcloud.com/oembed?format=json&maxwidth=480&url=http%3A//soundcloud.com/$1/$2",
+      "transform": "json['html'].gsub('&', '&')",
+      "service": {
+        "name": "SoundCloud",
+        "url": "http://soundcloud.com"
+      }
+    },
+    {
+      "regexp": "https://github.com/([^/]*)/([^/]*)/issues/(\\d+)",
+      "clip": "https://api.github.com/repos/$1/$2/issues/$3",
+      "transform": "\"<a target='_blank' href='#{json[\"html_url\"]}'>[#{$2}] Issue \\##{json[\"number\"]}: #{json[\"title\"]}</a>\"",
+      "service": {
+        "name": "Github issues",
+        "url": "http://github.com"
+      }
+    },
+    {
+      "regexp": "http://picplz.com/user/.*/pic/(.*)/",
+      "clip": "http://api.picplz.com/api/v2/pic.json?longurl_id=$1",
+      "transform": "img = json[\"value\"][\"pics\"][0][\"pic_files\"][\"100sh\"][\"img_url\"]\r\n%(<a href=\"#{original_url}\" class=\"quote-it thumbnail\"><img src=\"#{img}\" /></a>)",
+      "service": {
+        "name": "picplz",
+        "url": "http://picplz.com/"
+      }
+    },
+    {
+      "regexp": "http://vimeo\\.com/(\\d+)",
+      "clip": "http://vimeo.com/api/oembed.json?width=480&xhtml=true&url=http%3A//vimeo.com/$1",
+      "transform": "json['html']",
+      "service": {
+        "name": "Vimeo",
+        "url": "http://vimeo.com/"
+      }
+    },
+    {
+      "regexp": "www\\.flickr\\.com/photos/(.+)/(\\d+)/?",
+      "clip": "http://www.flickr.com/services/oembed/?format=json&url=http://www.flickr.com/photos/$1/$2/",
+      "transform": "<<HTML\r\n<a class=\"quote-it thumbnail\" target=\"_blank\" href=\"#{original_url}\"><img title=\"#{json['title']}\" alt=\"#{json['title']}\" src=\"#{json['url']}\" /></a>\r\nHTML",
+      "service": {
+        "name": "Flickr",
+        "url": "http://www.flickr.com"
+      }
+    },
+    {
+      "regexp": "www\\.slideshare\\.net/(.*)",
+      "clip": "http://www.slideshare.net/api/oembed/2?url=http://www.slideshare.net/$1&format=json",
+      "transform": "json['html'].sub('mozallowfullscreen','').sub('webkitallowfullscreen','').sub('allowfullscreen', '')",
+      "service": {
+        "name": "Slideshare",
+        "url": "http://www.slideshare.net"
+      }
+    },
+    {
+      "regexp": "https://github.com/.*",
+      "clip": null,
+      "transform": "\"<a href='#{original_url}' target='_blank'>#{original_url}</a>",
+      "service": {
+        "name": "Github blacklist",
+        "url": "github"
+      }
+    },
+    {
+      "regexp": "https?:\\/\\/(?:mobile\\.)?twitter\\.com\\/(?:#!\\/)?[a-zA-Z0-9_]+\\/status(?:es)?\\/([0-9]+)",
+      "clip": "https://api.twitter.com/1/statuses/oembed.json?id=$1",
+      "transform": "json['html'].gsub(\"<script async\", \"<script async=\\\"async\\\"\")",
+      "service": {
+        "name": "Twitter",
+        "url": "http://twitter.com"
+      }
+    }
   ]
 }
