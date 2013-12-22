@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+require 'quoteit/parser'
+
+x = Quoteit::Parser.load_from_file(Rails.root + './config/quote_it.json')
+x[:thumbnails].each(&:save!)
+x[:htmls].each(&:save!)
