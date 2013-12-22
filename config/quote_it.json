@@ -7,6 +7,14 @@
         "name": "Dropbox",
         "url" : "http://dropbox.com/"
       }
+    },
+    {
+      "regexp": "twitpic\\.com\\/([A-z0-9]+)",
+      "thumbnail": "http://twitpic.com/show/thumb/$1",
+      "service" : {
+        "name": "Twitpic",
+        "url": "http://twitpic.com"
+        }
     }
   ],
   "htmls" : [
