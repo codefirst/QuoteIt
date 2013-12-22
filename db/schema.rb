@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20131222045813) do
   create_table "html_rules", force: true do |t|
     t.string  "regexp"
     t.string  "clip"
-    t.string  "transform"
+    t.text    "transform"
     t.integer "service_id"
   end
 
