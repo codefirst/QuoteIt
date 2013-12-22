@@ -41,6 +41,11 @@ GEM
       html2haml
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
     haml (4.1.0.alpha.2)
       tilt
     haml-rails (0.5.3)
@@ -150,6 +155,7 @@ PLATFORMS
 
 DEPENDENCIES
   erb2haml
+  factory_girl_rails
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails

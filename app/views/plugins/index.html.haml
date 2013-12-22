@@ -1,0 +1,15 @@
+- content_for :title do
+  Supported services - QuoteIt
+
+%h2 Supported services
+%ul
+  - @services.each do|service|
+    %li
+      %a{ href: service.url }
+        =service.name
+      - if service.thumbnail?
+        %span.label thumbnail
+      - if service.clip?
+        %span.label clip
+
+
