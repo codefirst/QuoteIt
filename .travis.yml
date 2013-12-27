@@ -1,5 +1,9 @@
-before_script: sh -e /etc/init.d/xvfb start
-script: bundle exec rake travis
+laungage: ruby
+rvm:
+  1.9.3
+  2.0.0
+  2.1.0
+script: bundle exec rake spec
 notifications:
   email: false
   webhooks:
