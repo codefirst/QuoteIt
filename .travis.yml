@@ -1,10 +1,7 @@
 laungage: ruby
 rvm:
-  1.9.3
-  2.0.0
-  2.1.0
-script: bundle exec rake spec
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
 notifications:
-  email: false
-  webhooks:
-    - "http://dev.codefirst.org/puke_bot_travis.cgi"
+  webhooks: http://dashbozu.herokuapp.com/hook/travisci
