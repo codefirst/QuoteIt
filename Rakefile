@@ -1,16 +1,6 @@
-require File.expand_path('../config/boot.rb', __FILE__)
-require 'padrino-core/cli/rake'
-PadrinoTasks.init
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-RSpec::Core::RakeTask.new(:selenium) do |spec|
-  spec.pattern = 'selenium/*_spec.rb'
-  spec.rspec_opts = %w(-fs --color)
-end
+require File.expand_path('../config/application', __FILE__)
 
-task :travis do
-  ["rake spec", "rake selenium"].each do |cmd|
-    puts "Starting to run #{cmd}..."
-    system("export DISPLAY=:99.0 && bundle exec #{cmd}")
-    raise "#{cmd} failed!" unless $?.exitstatus == 0
-  end
-end
+Quoteit::Application.load_tasks

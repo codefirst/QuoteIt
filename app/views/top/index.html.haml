@@ -1,0 +1,29 @@
+%h1.brand.logo Quote It
+=form_tag(show_path, class: 'text-center', method: 'get') do
+  .input-append
+    =text_field_tag 'u', '', class: 'offset2 span5', placeholder: 'URL for quote (e.g. http://twitpic.com/73wiod)'
+    =button_tag('QuoteIt', type: 'submit', class: 'btn btn-primary', name: nil)
+
+.row
+  .span4
+    %h3 About
+    %p <span class="brand">QutoteIt</span> provides API to get the thumbnail image and the clip of a web resource.
+  .span4
+    %h3 Support services
+    %ul
+      %li=link_to('Twitter','http://twitter.com')
+      %li=link_to('Twitpic','http://twitpic.com')
+      %li=link_to('yfrog','http://yfrog.com')
+      %li=link_to('YouTube','http://youtube.com')
+      %li=link_to('NicoVideo','http://www.nicovideo.jp')
+      %li ... and more
+      %p!="You could see a <a href='#{plugins_path}'>full-list</a> at page."
+  .span4
+    %h3 Example
+    %dl
+      %dt Get thumbnail from <a href='http://twitpic.com/73wiod'>http://twitpic.com/73wiod</a>
+      %dd=url_link(show_path(u: 'http://twitpic.com/73wiod'))
+      %dt Get clip from <a href='https://twitter.com/#!/twitter/status/91890490089275392'>https://twitter.com/#!/twitter/status/91890490089275392</a>
+      %dd=url_link(show_path(u: 'https://twitter.com/#!/twitter/status/91890490089275392'))
+
+

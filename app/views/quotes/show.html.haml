@@ -1,0 +1,39 @@
+=form_tag(show_path, method: 'get') do
+  .input-append
+    =text_field_tag 'u', @url, class: 'offset2 span5', placeholder: 'URL for quote (e.g. http://twitpic.com/73wiod)'
+    =button_tag('QuoteIt', type: 'submit', class: 'btn btn-primary', name: nil)
+
+%div.preview.row
+  .span6.page
+    %h3 Preview
+    !=@page
+  .span6
+    %h3 Thumbnail
+    - if @thumbnail
+      %input.span5{:value=> @thumbnail}
+    - else
+      unavailable
+    %h3 HTML Source
+    %textarea.span5.xlarge{:rows=>3}=@page
+%h2 API
+.row
+  .span6
+    %h3 Thumbnail
+    - if @thumbnail
+      %dl
+        %dt Get JSON
+        %dd=url_link(thumbnail_path(u: @url, format: :json))
+        %dt Get Plain text
+        %dd=url_link(thumbnail_path(u: @url, format: :text))
+        %dt Redirect thumbnail image
+        %dd=url_link(thumbnail_path(u: @url, format: :jpeg))
+    - else
+      No thumbnail
+  .span6
+    %h3 Content
+    %dl
+      %dt Get JSON
+      %dd=url_link(html_path(u: @url, format: :json))
+      %dt Get HTML
+      %dd=url_link(html_path(u: @url, format: :html))
+

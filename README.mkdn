@@ -1,0 +1,91 @@
+# QuoteIt: quote from any web resource
+
+## Requirements
+
+ * Ruby 2.0.0 or later
+ * Bundler 1.3.5
+ * Postgresql or SQLite
+
+## Install
+
+Install dependencies:
+
+    $ bundle install --path .bundle --without development test
+
+Precompile assets:
+
+    $ bundle exec rake assets:precompile RAILS_ENV=production
+
+Setup database:
+
+    $ bundle exec rake db:migrate RAILS_ENV=production
+    $ bundle exec rake db:seed
+
+Run:
+
+    $ bundle exec rails s -e production
+
+and access to http://localhost:3000/
+
+## For developers
+
+Setup database:
+
+    $ bundle exec rake db:migrate RAILS_ENV=test
+
+Run tests:
+
+    $ bundle exec rake
+
+## Add rule
+
+A rules to quote web resouce is defined at `config/quote_it.json`. To load it, you need following command:
+
+    $ bundle exec rake db:seed
+
+### Rule definition: thumbnail
+
+Thumbnail rule is for image quote. This rule could only transform text.
+
+Example:
+
+    {
+      "regexp": "pics.lockerz.com\\/s\\/([\\d]+)",
+      "thumbnail": "http://api.plixi.com/api/tpapi.svc/json/imagefromurl?size=mobile&url=http://pics.lockerz.com/s/$1",
+      "service": {
+        "url": "http://lockerz.com/",
+        "name": "Lockerz"
+      }
+    }
+
+ * regexp :    regexp for source text
+ * thumbnail :    image url. You could use placeholder($1, $2, ..., $9) as a normal regexp
+ * service :    (optional) inforamion for this service
+
+### Rule definition: clip
+Html rule is for any web resouce. You could transform text by Ruby script.
+
+Example:
+
+    {
+      "regexp": "www\\.slideshare\\.net/(.*)",
+      "clip": "http://www.slideshare.net/api/oembed/2?url=http://www.slideshare.net/$1&format=json",
+      "transform": "json['html'].sub('mozallowfullscreen','').sub('webkitallowfullscreen','').sub('allowfullscreen', '')",
+      "service": {
+        "name": "Slideshare",
+        "url": "http://www.slideshare.net"
+      }
+    }
+
+ * `regexp` : regexp for source text
+ * `clip` : html url. You could use placeholder($1, $2, ..., $9) as a normal regexp
+ * `transform` : Ruby script to obtain HTML
+ * `service` : (optional) inforamion for this service
+
+## How to run on Heroku
+Only push this!!
+
+    $ heroku create
+    $ git push heroku master
+    $ heroku run "rake db:migrate"
+    $ heroku run "rake db:seed"
