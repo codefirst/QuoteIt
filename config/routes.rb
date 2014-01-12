@@ -6,6 +6,9 @@ Quoteit::Application.routes.draw do
   root 'top#index'
 
   resources :plugins
+  get 'sandbox' => 'sandbox#index', as: :sandbox
+  get 'sandbox/thumbnail' => 'sandbox#thumbnail', as: :sandbox_thumbnail
+  get 'sandbox/clip' => 'sandbox#html', as: :sandbox_html
 
   get 'thumbnail' => 'quotes#thumbnail', as: :thumbnail
   get 'clip' => 'quotes#html', as: :html

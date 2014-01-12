@@ -1,0 +1,64 @@
+- content_for :title do
+  Sandbox - QuoteIt
+
+%h2 Sandbox
+
+%form.plugin-definition.form-horizontal
+  %h3 Plugin definition
+  .control-group
+    %label.control-label Plugin type
+    .controls
+      %select.plugin-type{:name=>'plugin-type'}
+        %option{:value=>'thumbnail'} Thumbnail
+        %option{:value=>'web-clip'} Web clip
+  .thumbnail.plugin
+    .control-group
+      %label.control-label Regexp for URL
+      .controls
+        %input.regexp.xlarge{:placeholder=> 'example\.com/(.*)', :name=>'regexp'}
+    .controls-group
+      %label.control-label Thumbnail URL
+      .controls
+        %input.thumbnail.xlarge{:placeholder=> 'http://example.com/thumbnail/$1', :name => 'thumbnail'}
+        %p.help-block <strong>Note:</strong> $1, $2, etc. hold the text matched by the first, second, and following capturing groups. $$1, $$2, etc. hold the escape texts.
+  .web-clip.plugin{:style=>'display:none'}
+    .control-group
+      %label.control-label Regexp for URL
+      .controls
+        %input.xlarge.regexp
+    .control-group
+      %label.control-label Clip URL
+      .controls
+        %input.xlarge.clip
+        %p.help-block <strong>Note:</strong> $1, $2, etc. hold the text matched by the first, second, and following capturing groups.
+    .control-group
+      %label.control-label
+        Transform(Ruby)
+        %span.help-block optional
+      .controls
+        %textarea.edit-text.transform#code
+          =@content
+        .help-block
+          %h4 Available variable
+          %ul
+            %li <code>content</code>: content of clip URL
+            %li <code>json</code>: parse result of <code>content</code>
+            %li <code>original_url</code>: original URL
+            %li <code>clip_url</code>: clip URL
+
+  %h3 Plugin test
+  .plugin-test.form-horizontal
+    .control-groups
+      %label.control-label Sample URL
+      .controls
+        %input.url.xlarge{:placeholder => 'http://example.com/foo', :name=>'url'}
+        %input.btn.btn-primary{:type=>'submit', :value => 'test'}
+
+%h3 Result
+.result
+
+:javascript
+  var QuoteIt = {
+    thumbnail_sandbox : '#{sandbox_thumbnail_path}',
+    webClip_sandbox : '#{sandbox_html_path}'
+  };
