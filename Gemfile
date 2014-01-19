@@ -13,6 +13,7 @@ group :production do
   gem 'pg'
   gem 'thin'
   gem 'newrelic_rpm'
+  gem 'airbrake'
 end
 
 # Use bootstrap
