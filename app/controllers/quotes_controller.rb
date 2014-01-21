@@ -1,4 +1,5 @@
 class QuotesController < ApplicationController
+  before_filter :validate_url
 
   def thumbnail
     url = params[:u]
@@ -43,5 +44,12 @@ class QuotesController < ApplicationController
     @thumbnail = ThumbnailRule.quote @url
     @page      = HtmlRule.quote @url
     render status: 404, text: '404 Not found' unless @page
+  end
+
+  private
+  def validate_url
+    unless params[:u] =~ /^#{URI::regexp(%w(http https))}$/
+      redirect_to root_path
+    end
   end
 end
