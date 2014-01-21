@@ -49,7 +49,7 @@ class QuotesController < ApplicationController
   private
   def validate_url
     unless params[:u] =~ /^#{URI::regexp(%w(http https))}$/
-      redirect_to root_path
+      render status: 404, text: '404 Not found'
     end
   end
 end
