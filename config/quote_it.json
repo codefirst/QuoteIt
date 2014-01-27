@@ -268,7 +268,7 @@
     {
       "regexp": "https://github.com/.*",
       "clip": null,
-      "transform": "\"<a href='#{original_url}' target='_blank'>#{original_url}</a>",
+      "transform": "\"<a href='#{original_url}' target='_blank'>#{original_url}</a>\"",
       "service": {
         "name": "Github blacklist",
         "url": "github"
