@@ -41,8 +41,10 @@ class QuotesController < ApplicationController
 
   def show
     @url  = params[:u]
-    @thumbnail = ThumbnailRule.quote @url
-    @page      = HtmlRule.quote @url
+    unless Blacklist.include?(@url)
+      @thumbnail = ThumbnailRule.quote @url
+      @page      = HtmlRule.quote @url
+    end
     render status: 404, text: '404 Not found' unless @page
   end
 
