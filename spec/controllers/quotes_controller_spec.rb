@@ -6,4 +6,9 @@ describe QuotesController do
     subject { response }
     its(:response_code) { should eq 404 }
   end
+  context 'show with blacklisted url' do
+    before { get :show, :u => 'http://localhost/' }
+    subject { response }
+    its(:response_code) { should eq 404 }
+  end
 end
