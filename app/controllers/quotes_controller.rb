@@ -41,16 +41,14 @@ class QuotesController < ApplicationController
 
   def show
     @url  = params[:u]
-    unless Blacklist.include?(@url)
-      @thumbnail = ThumbnailRule.quote @url
-      @page      = HtmlRule.quote @url
-    end
+    @thumbnail = ThumbnailRule.quote @url
+    @page      = HtmlRule.quote @url
     render status: 404, text: '404 Not found' unless @page
   end
 
   private
   def validate_url
-    unless params[:u] =~ /^#{URI::regexp(%w(http https))}$/
+    if not (params[:u] =~ /^#{URI::regexp(%w(http https))}$/) or Blacklist.include?(params[:u])
       render status: 404, text: '404 Not found'
     end
   end
