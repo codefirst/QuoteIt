@@ -27,4 +27,7 @@ deploy:
         - heroku-deploy
         - script:
             name: Update database
-            code: heroku run rake db:migrate --app $APP_NAME
+            code: |
+              heroku run rake db:migrate --app $APP_NAME
+              heroku run rake db:seed --app $APP_NAME
+
