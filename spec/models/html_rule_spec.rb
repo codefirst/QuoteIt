@@ -91,8 +91,8 @@ describe HtmlRule do
 
     context "opengraph" do
       before do
-        OpenGraph.should_receive(:fetch) {
-          OpenStruct.new(:title => 'hoge')
+        OpenGraph.should_receive(:new) {
+          OpenStruct.new(:title => 'hoge', :images => [])
         }
       end
 
