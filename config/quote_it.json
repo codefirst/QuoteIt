@@ -176,6 +176,15 @@
       }
     },
     {
+      "regexp": "(https?://.+-dashbozu.herokuapp.com/activities/.*)",
+      "clip": "$1/embed",
+      "transform": "content",
+      "service": {
+        "name": "dashbozu2",
+        "url": "https://github.com/codefirst/dashbozu2"
+      }
+    },
+    {
       "regexp": "http://dashbozu.herokuapp.com/show/(.*)",
       "clip": "http://dashbozu.herokuapp.com/embed/$1",
       "transform": "content",
