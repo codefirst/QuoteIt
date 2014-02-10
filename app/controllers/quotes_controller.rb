@@ -48,8 +48,14 @@ class QuotesController < ApplicationController
 
   private
   def validate_url
-    if not (params[:u] =~ /^#{URI::regexp(%w(http https))}$/) or Blacklist.include?(params[:u])
+    if (not url?(params[:u])) or Blacklist.include?(params[:u])
       render status: 404, text: '404 Not found'
     end
+  end
+
+  def url?(url)
+    return false unless url =~ /^#{URI::regexp(%w(http https))}$/
+    return false if url =~ /^https?:\/\/$/ # only 'http://'
+    true
   end
 end
