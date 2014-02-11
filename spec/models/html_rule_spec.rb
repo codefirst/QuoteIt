@@ -110,4 +110,65 @@ describe HtmlRule do
       it { should be_include 'http://example.com/foo.png' }
     end
   end
+
+  describe "quote opengraph" do
+    context "without images" do
+      before do
+        OpenGraph.should_receive(:new) {
+          OpenStruct.new(
+            :title => 'hoge',
+            :images => [],
+            :url => 'http://hoge.com'
+          )
+        }
+      end
+      subject { HtmlRule.quote 'http://hoge.com' }
+      it { should_not be_include '<img' }
+    end
+
+    context "without description" do
+      before do
+        OpenGraph.should_receive(:new) {
+          OpenStruct.new(
+            :title => 'hoge',
+            :images => [],
+            :url => 'http://hoge.com'
+          )
+        }
+      end
+      subject { HtmlRule.quote 'http://hoge.com' }
+      it { should_not be_include 'description' }
+    end
+
+    context "without title" do
+      context "and with img" do
+        before do
+          OpenGraph.should_receive(:new) {
+            OpenStruct.new(
+              :title => 'hoge',
+              :images => ['http://hoge.com/icon.png'],
+              :url => 'http://hoge.com'
+            )
+          }
+        end
+        subject { HtmlRule.quote 'http://hoge.com' }
+        it { should_not be_include 'title' }
+        it { should be_include '<img' }
+      end
+      context "and without img" do
+        before do
+          OpenGraph.should_receive(:new) {
+            OpenStruct.new(
+              :images => [],
+              :url => 'http://hoge.com'
+            )
+          }
+        end
+        subject { HtmlRule.quote 'http://hoge.com' }
+        it { should be_include 'http://hoge.com' }
+        it { should_not be_include 'img' }
+        it { should_not be_include 'title' }
+      end
+    end
+  end
 end
