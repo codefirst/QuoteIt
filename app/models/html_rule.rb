@@ -69,14 +69,7 @@ class HtmlRule < ActiveRecord::Base
 	if graph then
 	  <<END
 <div clas='quote-it clip' style="border-radius: 5px 5px 5px 5px; box-shadow: 1px 1px 2px #999999; padding: 10px;">
-  <div>
-    <a href="#{escapeHTML graph.url}" class="quote-it thumbnail" target="_blank">
-      <img src="#{escapeHTML graph.images.first}" style="max-height: 100px" />
-    </a>
-  </div>
-  <div><a href="#{escapeHTML graph.url}" target="_blank">#{escapeHTML graph.title}</a></div>
-  <div>#{escapeHTML graph.description}</div>
-</div>
+#{image_tag(graph)}#{title_tag(graph)}#{description_tag(graph)}</div>
 END
 	end
     end
@@ -86,6 +79,38 @@ END
       if image then
         "<a class='quote-it thumbnail' href='#{url}' target='_blank'><img src='#{image}' /></a>"
       end
+    end
+
+    def image_tag(graph)
+      return '' if graph.images.empty?
+      return <<-HTML
+  <div>
+    <a href="#{escapeHTML graph.url}" class="quote-it thumbnail" target="_blank">
+      <img src="#{escapeHTML graph.images.first}" style="max-height: 100px" />
+    </a>
+  </div>
+      HTML
+    end
+
+    def title_tag(graph)
+      if !graph.title.blank?
+        return <<-HTML
+  <div><a href="#{escapeHTML graph.url}" target="_blank">#{escapeHTML graph.title}</a></div>
+        HTML
+      elsif graph.images.empty?
+        return <<-HTML
+  <div><a href="#{escapeHTML graph.url}" target="_blank">#{escapeHTML graph.url}</a></div>
+        HTML
+      else
+        return ''
+      end
+    end
+
+    def description_tag(graph)
+      return '' if graph.description.blank?
+      return <<-HTML
+  <div>#{escapeHTML graph.description}</div>
+      HTML
     end
   end
 
