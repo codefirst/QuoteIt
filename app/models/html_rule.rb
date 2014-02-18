@@ -52,7 +52,7 @@ class HtmlRule < ActiveRecord::Base
             }.call
           end
         end
-        "<div clas='quote-it clip'>#{clip}</div>"
+        "<div class='quote-it clip'>#{clip}</div>"
       else
         raise NotMatchError.new
       end
@@ -71,7 +71,7 @@ class HtmlRule < ActiveRecord::Base
 <div clas='quote-it clip' style="border-radius: 5px 5px 5px 5px; box-shadow: 1px 1px 2px #999999; padding: 10px;">
 #{image_tag(graph)}#{title_tag(graph)}#{description_tag(graph)}</div>
 END
-	end
+      end
     end
 
     def fallback(url)
