@@ -3,4 +3,5 @@ rvm:
   - 1.9.3
   - 2.0.0
 notifications:
-  webhooks: http://dashbozu.herokuapp.com/hook/travisci
+  webhooks:
+    secure: "aWLqs1d01TfSWp8ZBI0e9JtxXmQXQbASH6eusjYpxtiEEjxbhDj1q4RCGQWjOppkDncX9/5qjt7FGiJkQqKUtH8ePyRiECTz41sxSarGUkUUy8uThuCkr3THSv8EfcOH/me308p+VWUqvpz1SRnlx924XpOnXZJGGT/2JEIr1AM="
