@@ -213,7 +213,7 @@
     },
     {
       "regexp": "(https?:\\/\\/speakerdeck.com\\/?u?\\/[\\-\\w]+\\/?p?\\/[!:\\-\\w]+)",
-      "clip": "https://speakerdeck.com/oembed.json?url=$1",
+      "clip": "https://speakerdeck.com/oembed.json?maxwidth=640&url=$1",
       "transform": "json['html']",
       "service": {
         "name": "Speaker Deck",
