@@ -61,6 +61,38 @@ describe HtmlRule do
 
   end
 
+  describe "transform xml" do
+    describe "transform" do
+      before do
+        OpenURI.stub(:open_uri) {
+          StringIO.new( '<div>xml_content</div>')
+        }
+      end
+      subject {
+        HtmlRule.run_rule('http://example.com/foo',
+                          regexp: 'http://example\.com/(.*)',
+                          clip: 'http://example.com/$1.json',
+                      transform: 'json["div"]')
+      }
+      it { should be_include('xml_content') }
+    end
+
+    describe "parse error" do
+      before do
+        OpenURI.stub(:open_uri) {
+          StringIO.new( '<>')
+        }
+      end
+      subject {
+        HtmlRule.run_rule('http://example.com/foo',
+                          regexp: 'http://example\.com/(.*)',
+                          clip: 'http://example.com/$1.json',
+                          transform: 'json')
+      }
+      it { should eq "<div class='quote-it clip'></div>" }
+    end
+  end
+
   describe "select best rule" do
     before do
       [
