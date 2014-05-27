@@ -1,4 +1,7 @@
 $(function(){
+    if (typeof QuoteIt === 'unfefined') {
+        return;
+    }
     var code = null;
     // switch for plugin type
     function show(type) {
@@ -16,7 +19,6 @@ $(function(){
     $('select.plugin-type').bind('change',function(e){
       show(e.target.value);
     });
-    show($('select.plugin-type').val());
 
     // thumbnail plugin test
     var pluginRunner = {
