@@ -11,7 +11,11 @@ class CleanRoom
     return if clip_url.blank?
 
     @content = open(clip_url).read
-    @json    = JSON.parse @content rescue JSON::ParserError
+    begin
+      @json = JSON.parse @content
+    rescue JSON::ParserError
+      @json = Hash.from_xml @content rescue REXML::ParseException
+    end
   rescue OpenURI::HTTPError => e
     Rails.logger.info e.inspect
     Rails.logger.info e.io.meta
