@@ -1,7 +1,5 @@
 $(function(){
-    if (typeof QuoteIt === 'unfefined') {
-        return;
-    }
+    var QuoteIt = !!window.QuoteIt ? window.QuoteIt : {};
     var code = null;
     // switch for plugin type
     function show(type) {
