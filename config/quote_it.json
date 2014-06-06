@@ -249,6 +249,15 @@
       }
     },
     {
+      "regexp": "https://vine.co/v/(\\w+)",
+      "clip": "",
+      "transform": "\"<iframe class='vine-embed' width='480' height='480' src='https://vine.co/v/#{$1}/embed/simple' frameborder='0'></iframe>\"",
+      "service": {
+        "name": "Vine",
+        "url": "https://vine.co/"
+      }
+    },
+    {
       "regexp": "www\\.flickr\\.com/photos/(.+)/(\\d+)/?",
       "clip": "http://www.flickr.com/services/oembed/?format=json&url=http://www.flickr.com/photos/$1/$2/",
       "transform": "<<HTML\r\n<a class=\"quote-it thumbnail\" target=\"_blank\" href=\"#{original_url}\"><img title=\"#{json['title']}\" alt=\"#{json['title']}\" src=\"#{json['url']}\" /></a>\r\nHTML",
