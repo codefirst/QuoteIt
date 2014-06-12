@@ -42,7 +42,7 @@ $(function(){
     }
 
     // test
-    $('form').bind('submit', function(e){
+    $('.sandbox-form').bind('submit', function(e){
         e.stopPropagation();
         e.preventDefault();
 
