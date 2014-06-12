@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('ready page:load', function(){
     var QuoteIt = !!window.QuoteIt ? window.QuoteIt : {};
     var code = null;
     // switch for plugin type
