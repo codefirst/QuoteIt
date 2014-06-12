@@ -119,6 +119,14 @@
         "url": "http://movapic.com",
         "name": "携帯百景"
       }
+    },
+    {
+      "regexp": "(lohas.nicoseiga.jp\\/?\\/thumb\\/\\d+i)",
+      "thumbnail": "http://$1",
+      "service": {
+        "url": "http://seiga.nicovideo.jp/",
+        "name": "ニコニコ静画(イラスト)"
+      }
     }
   ],
   "htmls": [
