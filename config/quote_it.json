@@ -33,7 +33,7 @@
       }
     },
     {
-      "regexp": "(.*\\.(?:jpg|jpeg|png|gif)\\z)",
+      "regexp": "(.*\\.(?:jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)\\z)",
       "thumbnail": "$1",
       "service": {
         "url": "",
