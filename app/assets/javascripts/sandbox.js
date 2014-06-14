@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('ready page:load', function(){
     var QuoteIt = !!window.QuoteIt ? window.QuoteIt : {};
     var code = null;
     // switch for plugin type
@@ -42,7 +42,7 @@ $(function(){
     }
 
     // test
-    $('form').bind('submit', function(e){
+    $('.sandbox-form').bind('submit', function(e){
         e.stopPropagation();
         e.preventDefault();
 
