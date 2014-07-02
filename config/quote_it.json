@@ -309,6 +309,15 @@
         "url": "http://www.nicovideo.jp",
         "name": "niconico"
       }
+    },
+    {
+      "regexp": "(.*\\.(?:mp3|ogg)\\z)",
+      "clip": null,
+      "transform": "\"<audio src='#{original_url}' controls='controls' loop='loop'></audio>\"",
+      "service": {
+        "url": "",
+        "name": "Direct Link(mp3)"
+      }
     }
   ]
 }
