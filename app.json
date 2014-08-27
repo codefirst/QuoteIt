@@ -1,0 +1,18 @@
+{
+  "name": "QuoteIt",
+  "description": "Quote from any web resource",
+  "repository": "https://github.com/codefirst/QuoteIt/",
+  "env": {
+    "BLACKLIST": {
+      "description": "Blacklist host names (space-separated)",
+      "required": false
+    }
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate RAILS_ENV=production && bundle exec rake db:seed"
+  }
+}
+

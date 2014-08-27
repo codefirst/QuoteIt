@@ -1,5 +1,9 @@
 # QuoteIt: quote from any web resource
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+[![Build Status](https://secure.travis-ci.org/codefirst/QuoteIt.png?branch=master)](http://travis-ci.org/codefirst/QuoteIt) [![wercker status](https://app.wercker.com/status/8cc073aba4f1c5157696ccee21ab4206/s "wercker status")](https://app.wercker.com/project/bykey/8cc073aba4f1c5157696ccee21ab4206)
+
 ## Requirements
 
  * Ruby 2.0.0 or later
