@@ -43,7 +43,7 @@ Run tests:
 
 ## Add rule
 
-A rules to quote web resouce is defined at `config/quote_it.json`. To load it, you need following command:
+A rules to quote web resource is defined at `config/quote_it.json`. To load it, you need following command:
 
     $ bundle exec rake db:seed
 
@@ -64,10 +64,10 @@ Example:
 
  * regexp :    regexp for source text
  * thumbnail :    image url. You could use placeholder($1, $2, ..., $9) as a normal regexp
- * service :    (optional) inforamion for this service
+ * service :    (optional) information for this service
 
 ### Rule definition: clip
-Html rule is for any web resouce. You could transform text by Ruby script.
+Html rule is for any web resource. You could transform text by Ruby script.
 
 Example:
 
@@ -84,7 +84,7 @@ Example:
  * `regexp` : regexp for source text
  * `clip` : html url. You could use placeholder($1, $2, ..., $9) as a normal regexp
  * `transform` : Ruby script to obtain HTML
- * `service` : (optional) inforamion for this service
+ * `service` : (optional) information for this service
 
 ## How to run on Heroku
 
