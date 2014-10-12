@@ -304,7 +304,7 @@
     {
       "regexp": "www\\.nicovideo\\.jp\\/watch\\/([a-z0-9]+)\\??",
       "clip": "http://ext.nicovideo.jp/api/getthumbinfo/$1",
-      "transform": "<<HTML\r\n<a class=\"quote-it thumbnail\" target=\"_blank\" href=\"#{original_url}\"><img title=\"#{json['nicovideo_thumb_response']['thumb']['title']}\" alt=\"#{json['nicovideo_thumb_response']['thumb']['title']}\" src=\"#{json['nicovideo_thumb_response']['thumb']['thumbnail_url']}\" />#{json['nicovideo_thumb_response']['thumb']['title']}</a>\r\nHTML",
+      "transform": "if json['nicovideo_thumb_response']['thumb']\r\n<<HTML\r\n<a class=\"quote-it thumbnail\" target=\"_blank\" href=\"#{original_url}\"><img title=\"#{json['nicovideo_thumb_response']['thumb']['title']}\" alt=\"#{json['nicovideo_thumb_response']['thumb']['title']}\" src=\"#{json['nicovideo_thumb_response']['thumb']['thumbnail_url']}\" />#{json['nicovideo_thumb_response']['thumb']['title']}</a>\r\nHTML\r\nelse\r\n<<HTML\r\n<a class=\"quote-it thumbnail\" target=\"_blank\" href=\"#{original_url}\">#{original_url}</a>\r\nHTML\r\nend",
       "service": {
         "url": "http://www.nicovideo.jp",
         "name": "niconico"
