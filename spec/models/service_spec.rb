@@ -17,8 +17,8 @@ describe Service do
     context 'both' do
       subject do
         FactoryGirl.build(:service_a).tap do|s|
-          s.stub(:thumbnail_rules).and_return{ [ mock(ThumbnailRule) ] }
-          s.stub(:html_rules).and_return{ [ mock(HtmlRule) ] }
+          s.stub(:thumbnail_rules).and_return{ [ double(ThumbnailRule) ] }
+          s.stub(:html_rules).and_return{ [ double(HtmlRule) ] }
         end
       end
 
