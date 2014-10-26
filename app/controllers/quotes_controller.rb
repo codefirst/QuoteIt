@@ -61,7 +61,7 @@ class QuotesController < ApplicationController
   end
 
   def url?(url)
-    return false unless url =~ /^#{URI::regexp(%w(http https))}$/
+    return false unless url =~ /^((https?):\/\/[^\s]+)$/
     return false if url =~ /^https?:\/\/$/ # only 'http://'
     true
   end
