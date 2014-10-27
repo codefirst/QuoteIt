@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codefirst/opengraph_parser.git
-  revision: 781712a1c3e49eac36d7bfd0e202f27570342447
+  revision: b6806a692f7ea5de54ea0c6f839503a429d2599f
   specs:
     opengraph_parser (0.2.3)
       addressable
@@ -174,6 +174,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   airbrake
   erb2haml
   factory_girl_rails

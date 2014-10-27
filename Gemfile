@@ -53,6 +53,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'addressable'
 gem 'opengraph_parser', :github => 'codefirst/opengraph_parser'
 
 # Use ActiveModel has_secure_password
