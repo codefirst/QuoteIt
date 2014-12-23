@@ -72,7 +72,7 @@ class HtmlRule < ActiveRecord::Base
 	graph = OpenGraph.new(url)
 	if graph then
 	  <<END
-<div clas='quote-it clip' style="border-radius: 5px 5px 5px 5px; box-shadow: 1px 1px 2px #999999; padding: 10px;">
+<div class='quote-it clip' style="border-radius: 5px 5px 5px 5px; box-shadow: 1px 1px 2px #999999; padding: 10px;">
 #{image_tag(graph)}#{title_tag(graph)}#{description_tag(graph)}</div>
 END
       end
