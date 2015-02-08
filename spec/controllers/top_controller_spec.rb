@@ -1,5 +1,5 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe TopController do
+describe TopController, type: :controller do
 
 end

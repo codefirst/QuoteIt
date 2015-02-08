@@ -1,12 +1,12 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Service do
   describe 'predicate' do
     context 'none' do
       subject do
         FactoryGirl.build(:service_a).tap do|s|
-          s.stub(:thumbail_rules).and_return{ [] }
-          s.stub(:html_rules).and_return{ [] }
+          allow(s).to receive(:thumbail_rules).and_return([])
+          allow(s).to receive(:html_rules).and_return([])
         end
       end
 
@@ -17,8 +17,8 @@ describe Service do
     context 'both' do
       subject do
         FactoryGirl.build(:service_a).tap do|s|
-          s.stub(:thumbnail_rules).and_return{ [ double(ThumbnailRule) ] }
-          s.stub(:html_rules).and_return{ [ double(HtmlRule) ] }
+          allow(s).to receive(:thumbnail_rules).and_return([double(ThumbnailRule)])
+          allow(s).to receive(:html_rules).and_return([double(HtmlRule)])
         end
       end
 

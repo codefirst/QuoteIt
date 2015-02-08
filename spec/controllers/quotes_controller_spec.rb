@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe QuotesController do
+describe QuotesController, type: :controller do
   context 'show' do
     context 'with nil' do
       before { get :show, :u => nil }
@@ -27,7 +27,7 @@ describe QuotesController do
     context 'with HTTPError 404' do
       before {
         err = OpenURI::HTTPError.new('404 Not Found', nil)
-        HtmlRule.stub(:quote).and_raise(err)
+        allow(HtmlRule).to receive(:quote).and_raise(err)
         get :html, :format => 'json', :u => 'http://www.example.com'
       }
       subject { response }
@@ -36,7 +36,7 @@ describe QuotesController do
     context 'with HTTPError 403' do
       before {
         err = OpenURI::HTTPError.new('403 Forbidden', nil)
-        HtmlRule.stub(:quote).and_raise(err)
+        allow(HtmlRule).to receive(:quote).and_raise(err)
         get :html, :format => 'json', :u => 'http://www.example.com'
       }
       subject { response }
@@ -45,7 +45,7 @@ describe QuotesController do
     context 'with HTTPError 503' do
       before {
         err = ::OpenURI::HTTPError.new('503 Service Unavailable', nil)
-        HtmlRule.stub(:quote).and_raise(err)
+        allow(HtmlRule).to receive(:quote).and_raise(err)
         get :html, :format => 'json', :u => 'http://www.example.com'
       }
       subject { response }
