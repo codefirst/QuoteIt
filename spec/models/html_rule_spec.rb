@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'spec_helper'
+require 'rails_helper'
 require 'stringio'
 
 describe HtmlRule do
@@ -25,7 +25,7 @@ describe HtmlRule do
 
   describe "transform" do
     before do
-      OpenURI.stub(:open_uri) {
+      allow(OpenURI).to receive(:open_uri) {
         StringIO.new( '{ "div" : "json_content" }')
       }
     end
@@ -64,7 +64,7 @@ describe HtmlRule do
   describe "transform xml" do
     describe "transform" do
       before do
-        OpenURI.stub(:open_uri) {
+        allow(OpenURI).to receive(:open_uri) {
           StringIO.new( '<div>xml_content</div>')
         }
       end
@@ -79,7 +79,7 @@ describe HtmlRule do
 
     describe "parse error" do
       before do
-        OpenURI.stub(:open_uri) {
+        allow(OpenURI).to receive(:open_uri) {
           StringIO.new( '<>')
         }
       end
@@ -101,7 +101,7 @@ describe HtmlRule do
         FactoryGirl.build(:html_rule_c)
       ].each(&:save)
 
-      OpenURI.stub(:open_uri) {
+      allow(OpenURI).to receive(:open_uri) {
         StringIO.new( '{ "div" : "json_content" }')
       }
     end
@@ -123,7 +123,7 @@ describe HtmlRule do
 
     context "opengraph" do
       before do
-        OpenGraph.should_receive(:new) {
+        expect(OpenGraph).to receive(:new) {
           OpenStruct.new(:title => 'hoge', :images => [])
         }
       end
@@ -134,7 +134,7 @@ describe HtmlRule do
 
     context "fallback" do
       before do
-        ThumbnailRule.should_receive(:quote) {
+        expect(ThumbnailRule).to receive(:quote) {
           'http://example.com/foo.png'
         }
       end
@@ -146,7 +146,7 @@ describe HtmlRule do
   describe "quote opengraph" do
     context "without images" do
       before do
-        OpenGraph.should_receive(:new) {
+        allow(OpenGraph).to receive(:new) {
           OpenStruct.new(
             :title => 'hoge',
             :images => [],
@@ -160,7 +160,7 @@ describe HtmlRule do
 
     context "without description" do
       before do
-        OpenGraph.should_receive(:new) {
+        allow(OpenGraph).to receive(:new) {
           OpenStruct.new(
             :title => 'hoge',
             :images => [],
@@ -175,7 +175,7 @@ describe HtmlRule do
     context "without title" do
       context "and with img" do
         before do
-          OpenGraph.should_receive(:new) {
+          allow(OpenGraph).to receive(:new) {
             OpenStruct.new(
               :title => 'hoge',
               :images => ['http://hoge.com/icon.png'],
@@ -189,7 +189,7 @@ describe HtmlRule do
       end
       context "and without img" do
         before do
-          OpenGraph.should_receive(:new) {
+          allow(OpenGraph).to receive(:new) {
             OpenStruct.new(
               :images => [],
               :url => 'http://hoge.com'

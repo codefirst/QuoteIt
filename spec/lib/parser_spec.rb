@@ -28,7 +28,7 @@ describe Quoteit::Parser do
   describe 'service' do
     context 'new recoard' do
       before do
-        Service.should_receive(:where).and_return { [] }
+        expect(Service).to receive(:where).and_return([])
       end
 
       subject do
@@ -42,9 +42,9 @@ describe Quoteit::Parser do
 
     context 'exist recoard' do
       before do
-        Service.should_receive(:where).with(name: 'service_name').and_return {
+        expect(Service).to receive(:where).with(name: 'service_name').and_return(
           [ Service.new(id: 1) ]
-        }
+        )
       end
 
       subject do
@@ -62,7 +62,7 @@ describe Quoteit::Parser do
   describe 'thumbnail' do
     context 'new recoard' do
       before do
-        ThumbnailRule.should_receive(:where).and_return { [] }
+        expect(ThumbnailRule).to receive(:where).and_return([])
       end
 
       subject do
@@ -76,9 +76,9 @@ describe Quoteit::Parser do
 
     context 'exist recoard' do
       before do
-        ThumbnailRule.should_receive(:where).with(regexp: 'regexp').and_return {
+        expect(ThumbnailRule).to receive(:where).with(regexp: 'regexp').and_return(
           [ ThumbnailRule.new(id: 1) ]
-        }
+        )
       end
 
       subject do
@@ -94,7 +94,7 @@ describe Quoteit::Parser do
   describe 'html' do
     context 'new recoard' do
       before do
-        HtmlRule.should_receive(:where).and_return { [] }
+        expect(HtmlRule).to receive(:where).and_return([])
       end
 
       subject do
@@ -109,9 +109,9 @@ describe Quoteit::Parser do
 
     context 'exist recoard' do
       before do
-        HtmlRule.should_receive(:where).with(regexp: 'regexp').and_return {
+        expect(HtmlRule).to receive(:where).with(regexp: 'regexp').and_return(
           [ HtmlRule.new(id: 1) ]
-        }
+        )
       end
 
       subject do
