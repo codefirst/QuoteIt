@@ -73,7 +73,7 @@ class HtmlRule < ActiveRecord::Base
 	if graph then
 	  <<END
 <div class='quote-it clip opengraph' style="border-radius: 5px 5px 5px 5px; box-shadow: 1px 1px 2px #999999; padding: 10px;">
-#{image_tag(graph)}#{title_tag(graph)}#{description_tag(graph)}</div>
+#{image_tag(url, graph)}#{title_tag(url, graph)}#{description_tag(graph)}</div>
 END
       end
     end
@@ -85,25 +85,25 @@ END
       end
     end
 
-    def image_tag(graph)
+    def image_tag(url, graph)
       return '' if graph.images.empty?
       return <<-HTML
   <div>
-    <a href="#{escapeHTML graph.url}" class="quote-it thumbnail" target="_blank">
+    <a href="#{escapeHTML url}" class="quote-it thumbnail" target="_blank">
       <img src="#{escapeHTML graph.images.first}" style="max-height: 100px" />
     </a>
   </div>
       HTML
     end
 
-    def title_tag(graph)
+    def title_tag(url, graph)
       if !graph.title.blank?
         return <<-HTML
-  <div><a href="#{escapeHTML graph.url}" target="_blank">#{escapeHTML graph.title}</a></div>
+  <div><a href="#{escapeHTML url}" target="_blank">#{escapeHTML graph.title}</a></div>
         HTML
       elsif graph.images.empty?
         return <<-HTML
-  <div><a href="#{escapeHTML graph.url}" target="_blank">#{escapeHTML graph.url}</a></div>
+  <div><a href="#{escapeHTML url}" target="_blank">#{escapeHTML url}</a></div>
         HTML
       else
         return ''

@@ -187,6 +187,7 @@ describe HtmlRule do
         it { should_not be_include 'title' }
         it { should be_include '<img' }
       end
+
       context "and without img" do
         before do
           allow(OpenGraph).to receive(:new) {
@@ -198,6 +199,21 @@ describe HtmlRule do
         end
         subject { HtmlRule.quote 'http://hoge.com' }
         it { should be_include 'http://hoge.com' }
+        it { should_not be_include 'img' }
+        it { should_not be_include 'title' }
+      end
+
+      context "ignore redirect" do
+        before do
+          allow(OpenGraph).to receive(:new) {
+            OpenStruct.new(
+              :images => [],
+              :url => 'http://another.com'
+            )
+          }
+        end
+        subject { HtmlRule.quote 'http://original.com' }
+        it { should be_include 'http://original.com' }
         it { should_not be_include 'img' }
         it { should_not be_include 'title' }
       end
