@@ -142,7 +142,7 @@
     {
       "regexp": "https?:\\/\\/itunes\\.apple\\.com\\/(\\w+)\\/(\\w+)/(.+)/id(\\d+)(.*)",
       "clip": "http://itunes.apple.com/lookup?country=$1&id=$4",
-      "transform": "track = \"#{json['results'][0]['trackName'] || json['results'][0]['collectionName']} - #{json['results'][0]['artistName']}\".gsub('&', '&amp;')\r\n\"<a class='quote-it thumbnail' target='_blank' href='#{original_url}' ><img style='height:100px' src='#{json['results'][0]['artworkUrl100']}' /> #{track}</a>\"",
+      "transform": "track = \"#{json['results'][0]['trackName'] || json['results'][0]['collectionName']} - #{json['results'][0]['artistName']}\".gsub('&', '&amp;')\r\n\"<a class='quote-it thumbnail' target='_blank' href='#{original_url}?at=1010l3vf' ><img style='height:100px' src='#{json['results'][0]['artworkUrl100']}' /> #{track}</a>\"",
       "service": {
         "name": "iTunes Preview",
         "url": "https://itunes.apple.com/"
