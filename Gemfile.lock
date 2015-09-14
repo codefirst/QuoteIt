@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codefirst/opengraph_parser.git
-  revision: 1d35a1d54c2de2a5c691356fe028d0d7f3606ed0
+  revision: 621d2aa75a61f0a5091ba131a004c2923ac2e68d
   specs:
     opengraph_parser (0.2.3)
       addressable
