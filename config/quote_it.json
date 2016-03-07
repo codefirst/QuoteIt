@@ -295,7 +295,7 @@
     {
       "regexp": "https?:\\/\\/(?:mobile\\.)?twitter\\.com\\/(?:#!\\/)?[a-zA-Z0-9_]+\\/status(?:es)?\\/([0-9]+)",
       "clip": "https://api.twitter.com/1/statuses/oembed.json?id=$1",
-      "transform": "json['html'].gsub(\"<script async\", \"<script async=\\\"async\\\"\")",
+      "transform": "json['html'].gsub(\"<script async\", \"<script async=\\\"async\\\"\").gsub('<br>', '<br />')",
       "service": {
         "name": "Twitter",
         "url": "http://twitter.com"
