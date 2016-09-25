@@ -318,6 +318,15 @@
         "url": "",
         "name": "Direct Link(mp3)"
       }
+    },
+    {
+      "regexp": "(.*\\.(?:mp4|mov)\\z)",
+      "clip": null,
+      "transform": "\"<video src='#{original_url}' controls style='width:480px'></video>\"",
+      "service": {
+        "url": "",
+        "name": "Direct Link(mp4)"
+      }
     }
   ]
 }
