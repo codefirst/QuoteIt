@@ -322,7 +322,7 @@
     {
       "regexp": "(.*\\.(?:mp4|mov)\\z)",
       "clip": null,
-      "transform": "\"<video src='#{original_url}' controls style='width:480px'></video>\"",
+      "transform": "\"<video src='#{original_url}' controls='controls' style='width:480px'></video>\"",
       "service": {
         "url": "",
         "name": "Direct Link(mp4)"
