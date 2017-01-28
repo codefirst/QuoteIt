@@ -1,11 +1,7 @@
-box: wercker/rvm
-services:
-    - wercker/postgresql
+box: ruby:2.3
 build:
     steps:
       - bundle-install
-      - rails-database-yml:
-          service: postgresql
       - script:
           name: echo ruby information
           code: |
@@ -23,12 +19,9 @@ build:
       - mzp/http-notify:
           url: $DASHBOZU_URL
 deploy:
-    steps:
-        - heroku-deploy:
-            install-toolbelt: true
-        - script:
-            name: Update database
-            code: |
-              heroku run rake db:migrate --app $APP_NAME
-              heroku run rake db:seed --app $APP_NAME
+  steps:
+      - heroku-deploy:
+          key: $HEROKU_KEY
+          user: $HEROKU_USER
+          app-name: $HEROKU_APP_NAME
 
