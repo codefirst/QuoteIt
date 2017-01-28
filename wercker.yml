@@ -8,7 +8,6 @@ build:
               echo "ruby version $(ruby --version) running"
               echo "from location $(which ruby)"
               echo -p "gem list: $(gem list)"
-              find /cache/
       - script:
           name: Set up db
           code: RAILS_ENV=test bundle exec rake db:schema:load
