@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/codefirst/opengraph_parser.git
+  remote: https://github.com/codefirst/opengraph_parser.git
   revision: 7912fe931187478cfdf7db4e08ff004510f819c9
   specs:
     opengraph_parser (0.2.3)
@@ -192,7 +192,7 @@ GEM
       execjs
       rails (>= 3.1)
       railties (>= 3.1)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
